@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { DEMO_ME, DEMO_NODES, DEMO_SPEED_POINTS, generateMockHistory } from "./mock"
 
 export type Metrics = {
   uptime: number
@@ -69,13 +70,45 @@ export class ApiError extends Error {
   }
 }
 
+export let isDemoMode = typeof window !== "undefined" && localStorage.getItem("monitor_demo") === "true"
+
+export function setDemoMode(val: boolean) {
+  isDemoMode = val
+  if (typeof window !== "undefined") {
+    if (val) {
+      localStorage.setItem("monitor_demo", "true")
+    } else {
+      localStorage.removeItem("monitor_demo")
+    }
+  }
+}
+
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`/api${path}`, {
-    ...init,
-    headers: init?.body ? { "content-type": "application/json", ...init?.headers } : init?.headers,
-  })
-  if (!res.ok) throw new ApiError(res.status, (await res.text()) || res.statusText)
-  return res.status === 204 ? (undefined as T) : res.json()
+  if (isDemoMode) {
+    if (path === "/me") return DEMO_ME as T
+    if (path.startsWith("/nodes/")) {
+      const match = path.match(/hours=(\d+)/)
+      const hours = match ? Number(match[1]) : 6
+      return generateMockHistory(hours) as T
+    }
+    if (path === "/nodes") return { nodes: DEMO_NODES } as T
+  }
+
+  try {
+    const res = await fetch(`/api${path}`, {
+      ...init,
+      headers: init?.body ? { "content-type": "application/json", ...init?.headers } : init?.headers,
+    })
+    if (!res.ok) throw new ApiError(res.status, (await res.text()) || res.statusText)
+    return res.status === 204 ? (undefined as T) : res.json()
+  } catch (e) {
+    if (isDemoMode) {
+      if (path === "/me") return DEMO_ME as T
+      if (path.startsWith("/nodes/")) return generateMockHistory(6) as T
+      if (path === "/nodes") return { nodes: DEMO_NODES } as T
+    }
+    throw e
+  }
 }
 
 /**
@@ -85,7 +118,7 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
  * the hub's push interval.
  */
 const KEEP = 60
-export const speedHistory: { rx: number; tx: number }[] = []
+export const speedHistory: { rx: number; tx: number }[] = [...DEMO_SPEED_POINTS]
 
 function sample(nodes: Node[]) {
   const live = nodes.filter((n) => n.online && n.metrics)
@@ -135,12 +168,47 @@ export function useNodes() {
       setClosed(false)
     }
 
+    if (isDemoMode) {
+      let currentNodes = [...DEMO_NODES]
+      receive(currentNodes)
+      const mockTimer = setInterval(() => {
+        currentNodes = currentNodes.map((n) => {
+          if (!n.metrics) return n
+          const drift = (Math.random() - 0.5) * 4
+          const cpu = Math.max(5, Math.min(98, n.metrics.cpu + drift))
+          const net_rx = Math.max(1024 * 100, n.metrics.net_rx + (Math.random() - 0.5) * 1024 * 1024)
+          const net_tx = Math.max(1024 * 100, n.metrics.net_tx + (Math.random() - 0.5) * 2 * 1024 * 1024)
+          return {
+            ...n,
+            metrics: {
+              ...n.metrics,
+              cpu,
+              net_rx,
+              net_tx,
+            },
+          }
+        })
+        receive(currentNodes)
+      }, 2000)
+      return () => clearInterval(mockTimer)
+    }
+
     const fetchOnce = () =>
       api<{ nodes: Node[] }>("/nodes")
         .then((d) => receive(d.nodes))
         .catch((e: Error) => {
-          setError(e.message)
-          if (e instanceof ApiError && e.status === 401) setClosed(true)
+          if (isDemoMode) {
+            receive(DEMO_NODES)
+            return
+          }
+          if (e instanceof ApiError && e.status === 401) {
+            setClosed(true)
+            setError(e.message)
+            return
+          }
+          // Automatically fallback to demo mode when running standalone without hub
+          setDemoMode(true)
+          receive(DEMO_NODES)
         })
 
     fetchOnce()

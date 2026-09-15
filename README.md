@@ -1,8 +1,10 @@
-# monitor-theme-default
+# monitor-theme-liquid-glass
 
-[monitor](https://github.com/monitor-probe/monitor) 的内置默认主题，同时作为第三方主题的参考实现。
+[monitor](https://github.com/monitor-probe/monitor) 的 Apple Liquid Glass（苹果液态拟态毛玻璃）风格主题。
 
-React + Vite + shadcn/ui，黑白配色。
+![preview](./preview.png)
+
+基于 React + Vite + Tailwind CSS，具备 macOS / iOS 原生通透质感、多层环境漫反射光晕、苹果经典色彩系统与拟态流体毛玻璃（Liquid Glass）视觉交互效果。
 
 ## 开发
 

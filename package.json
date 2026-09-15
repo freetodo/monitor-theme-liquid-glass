@@ -1,5 +1,12 @@
 {
-  "name": "monitor-theme-default",
+  "name": "monitor-theme-liquid-glass",
+  "description": "Apple Liquid Glass theme for monitor-probe",
+  "author": "freetodo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freetodo/monitor-theme-liquid-glass.git"
+  },
+  "homepage": "https://github.com/freetodo/monitor-theme-liquid-glass#readme",
   "private": true,
   "version": "1.0.0",
   "type": "module",

@@ -1,10 +1,3 @@
-/* Scan this app's own source and nothing else. Tailwind's automatic detection
-   walks the whole repository, turning a word in a Rust file or a document into a
-   utility class in the shipped stylesheet: `.filter` and `.transform` were
-   here because api.rs calls `.filter(...)`. Worse than the wasted bytes, it
-   made the build depend on files that have nothing to do with it -- adding an
-   unrelated workflow changed the CSS, and with it the content hash of every
-   asset. */
 @import "tailwindcss" source(none);
 @source "../index.html";
 @source "../src";
@@ -13,70 +6,99 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.18 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0 0);
-  --primary: oklch(0.18 0 0);
+  --radius: 1rem;
+  --background: oklch(0.975 0.008 240);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(1 0 0 / 72%);
+  --card-foreground: oklch(0.18 0.02 260);
+  --popover: oklch(1 0 0 / 85%);
+  --popover-foreground: oklch(0.18 0.02 260);
+  --primary: oklch(0.56 0.22 255);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.18 0 0);
-  --muted: oklch(0.955 0 0);
-  --muted-foreground: oklch(0.52 0 0);
-  --accent: oklch(0.955 0 0);
-  --accent-foreground: oklch(0.18 0 0);
-  --destructive: oklch(0.3 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.62 0 0);
-  --chart-1: oklch(0.3 0 0);
-  --chart-2: oklch(0.45 0 0);
-  --chart-3: oklch(0.58 0 0);
-  --chart-4: oklch(0.7 0 0);
-  --chart-5: oklch(0.82 0 0);
-  /* Greyscale has no red or amber, so severity is carried by weight: the bar
-     darkens as it fills. */
-  --ok: oklch(0.62 0 0);
-  --warn: oklch(0.44 0 0);
+  --secondary: oklch(0.95 0.01 240 / 75%);
+  --secondary-foreground: oklch(0.22 0.02 260);
+  --muted: oklch(0.94 0.01 240 / 65%);
+  --muted-foreground: oklch(0.52 0.02 260);
+  --accent: oklch(0.94 0.02 255 / 80%);
+  --accent-foreground: oklch(0.2 0.04 255);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(0 0 0 / 8%);
+  --input: oklch(0 0 0 / 10%);
+  --ring: oklch(0.56 0.22 255 / 35%);
+  
+  /* Apple Vibrant Palette */
+  --chart-1: oklch(0.56 0.22 255); /* Apple Blue */
+  --chart-2: oklch(0.62 0.22 300); /* Apple Purple */
+  --chart-3: oklch(0.7 0.16 175);  /* Apple Cyan / Mint */
+  --chart-4: oklch(0.73 0.18 55);   /* Apple Orange */
+  --chart-5: oklch(0.62 0.23 25);   /* Apple Coral Red */
+  
+  --ok: oklch(0.68 0.2 145);        /* Apple Green */
+  --warn: oklch(0.73 0.18 55);      /* Apple Orange */
+
+  /* Glassmorphism Specs */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  --glass-highlight: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+
+  /* Liquid Glass Specs */
+  --liquid-glass-bg: rgba(255, 255, 255, 0.65);
+  --liquid-glass-border: rgba(255, 255, 255, 0.75);
+  --liquid-glass-shadow: 0 10px 36px -4px rgba(0, 0, 0, 0.06), 0 2px 8px -1px rgba(0, 0, 0, 0.03);
+  --liquid-glass-highlight: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.2 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.2 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.92 0 0);
-  --primary-foreground: oklch(0.2 0 0);
-  --secondary: oklch(0.27 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.27 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.27 0 0);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.95 0 0);
+  --background: oklch(0.12 0.015 260);
+  --foreground: oklch(0.98 0.005 240);
+  --card: oklch(0.18 0.02 260 / 65%);
+  --card-foreground: oklch(0.98 0.005 240);
+  --popover: oklch(0.18 0.02 260 / 85%);
+  --popover-foreground: oklch(0.98 0.005 240);
+  --primary: oklch(0.65 0.22 255);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.24 0.02 260 / 70%);
+  --secondary-foreground: oklch(0.98 0.005 240);
+  --muted: oklch(0.24 0.02 260 / 70%);
+  --muted-foreground: oklch(0.65 0.015 260);
+  --accent: oklch(0.26 0.03 260 / 80%);
+  --accent-foreground: oklch(0.98 0.005 240);
+  --destructive: oklch(0.65 0.22 25);
   --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.55 0 0);
-  --chart-1: oklch(0.95 0 0);
-  --chart-2: oklch(0.82 0 0);
-  --chart-3: oklch(0.68 0 0);
-  --chart-4: oklch(0.54 0 0);
-  --chart-5: oklch(0.42 0 0);
-  /* Inverted against the dark ground: the fuller the bar, the brighter. */
-  --ok: oklch(0.62 0 0);
-  --warn: oklch(0.79 0 0);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.65 0.22 255 / 40%);
+
+  /* Apple Vibrant Palette in Dark */
+  --chart-1: oklch(0.68 0.22 255);
+  --chart-2: oklch(0.72 0.22 300);
+  --chart-3: oklch(0.76 0.16 175);
+  --chart-4: oklch(0.78 0.18 55);
+  --chart-5: oklch(0.68 0.24 25);
+
+  --ok: oklch(0.72 0.2 145);
+  --warn: oklch(0.78 0.18 55);
+
+  /* Glassmorphism Specs in Dark */
+  --glass-bg: rgba(28, 30, 36, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.38), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --glass-highlight: inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
+
+  /* Liquid Glass Specs in Dark */
+  --liquid-glass-bg: rgba(24, 27, 34, 0.62);
+  --liquid-glass-border: rgba(255, 255, 255, 0.14);
+  --liquid-glass-shadow: 0 14px 40px -4px rgba(0, 0, 0, 0.45), 0 2px 10px -1px rgba(0, 0, 0, 0.25);
+  --liquid-glass-highlight: inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -105,12 +127,146 @@
 }
 
 @layer base {
-  * { @apply border-border outline-ring/50; }
-  /* Reserve the scrollbar's width on every page: without it, leaving a route
-     whose content exceeds the fold widens the page. */
-  html { scrollbar-gutter: stable; }
-  body { @apply bg-background text-foreground; }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scrollbar-gutter: stable;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.glass-pill {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-pill-active {
+  background: rgba(255, 255, 255, 0.95);
+  color: oklch(0.18 0.02 260);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.dark .glass-pill-active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 /* Tabular figures keep live numbers from shifting as they update. */
-.tnum { font-variant-numeric: tabular-nums; }
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ambient glow background orbs */
+.ambient-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.65;
+  transition: opacity 0.5s ease;
+}
+
+.dark .ambient-mesh {
+  opacity: 0.45;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, -30px, 0) scale(1.1); }
+}
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-35px, 25px, 0) scale(0.92); }
+}
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(30px, 35px, 0) scale(1.06); }
+}
+
+.ambient-orb-1 { animation: orb-float-1 20s ease-in-out infinite; }
+.ambient-orb-2 { animation: orb-float-2 24s ease-in-out infinite; }
+.ambient-orb-3 { animation: orb-float-3 28s ease-in-out infinite; }
+
+/* Liquid Glass Utilities */
+.liquid-glass-surface {
+  background: var(--liquid-glass-bg);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--liquid-glass-border);
+  box-shadow: var(--liquid-glass-shadow), var(--liquid-glass-highlight);
+}
+
+.liquid-glass-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(350px circle at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.22), transparent 60%);
+  opacity: var(--sheen-opacity, 0);
+  transition: opacity 0.4s ease;
+}
+
+.ease-spring {
+  transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-card-in {
+  animation: card-in 0.45s cubic-bezier(0.32, 0.72, 0, 1) both;
+  will-change: transform, opacity;
+}

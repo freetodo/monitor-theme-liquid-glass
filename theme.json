@@ -1,8 +1,8 @@
 {
-  "name": "默认主题",
-  "short": "default",
-  "description": "内置状态面板，黑白配色",
+  "name": "Liquid Glass",
+  "short": "liquid-glass",
+  "description": "Apple Liquid Glass 拟态流体毛玻璃风格，通透精致，多层景深与原生质感",
   "version": "1.0.0",
-  "author": "stqfdyr",
-  "url": "https://github.com/monitor-probe/monitor-theme-default"
+  "author": "freetodo",
+  "url": "https://github.com/freetodo/monitor-theme-liquid-glass"
 }
