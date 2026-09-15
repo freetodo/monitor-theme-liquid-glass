@@ -152,14 +152,15 @@ export default function App() {
       <LiquidGlassFilterDefs />
       {/* Apple Ambient Mesh Diffuse Background Orbs */}
       <div className="ambient-mesh" aria-hidden>
-        <div className="ambient-orb ambient-orb-1 -top-28 left-1/4 h-[32rem] w-[32rem] bg-blue-500/20 dark:bg-blue-600/15" />
-        <div className="ambient-orb ambient-orb-2 top-1/3 -right-24 h-[28rem] w-[28rem] bg-purple-500/20 dark:bg-purple-600/15" />
-        <div className="ambient-orb ambient-orb-3 bottom-20 left-10 h-96 w-96 bg-teal-400/15 dark:bg-teal-600/10" />
+        <div className="ambient-orb ambient-orb-1 -top-32 left-1/5 h-[36rem] w-[36rem] bg-indigo-500/35 dark:bg-indigo-600/30" />
+        <div className="ambient-orb ambient-orb-2 top-1/4 -right-20 h-[34rem] w-[34rem] bg-purple-500/35 dark:bg-purple-600/30" />
+        <div className="ambient-orb ambient-orb-3 top-2/3 left-10 h-[32rem] w-[32rem] bg-cyan-400/30 dark:bg-teal-500/25" />
+        <div className="ambient-orb ambient-orb-1 bottom-10 right-1/4 h-[30rem] w-[30rem] bg-pink-500/25 dark:bg-rose-500/20" />
       </div>
 
-      {/* Floating Apple Liquid Glass Navigation Header */}
-      <header className="sticky top-0 z-30 border-b border-white/60 bg-white/65 backdrop-blur-3xl backdrop-saturate-[190%] transition-all duration-300 dark:border-white/[0.1] dark:bg-[rgba(20,22,28,0.7)] shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
-        <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:px-6">
+      {/* Floating Apple Liquid Glass Navigation Island */}
+      <header className="sticky top-3 z-30 mx-auto max-w-[1400px] px-4 sm:px-6 transition-all">
+        <div className="flex items-center gap-3 rounded-2xl border border-white/80 bg-white/45 px-4 py-2.5 backdrop-blur-3xl backdrop-saturate-[210%] shadow-[0_12px_36px_rgba(0,0,0,0.06),inset_0_0_0_1px_rgba(255,255,255,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.95)] dark:border-white/[0.16] dark:bg-[rgba(18,22,32,0.55)] dark:shadow-[0_16px_44px_rgba(0,0,0,0.5),inset_0_0_0_1px_rgba(255,255,255,0.12),inset_0_1.5px_2px_rgba(255,255,255,0.25)]">
           <button
             className="group flex items-center gap-2.5 text-base font-semibold tracking-tight transition-opacity hover:opacity-80"
             onClick={() => go(null)}
