@@ -175,9 +175,9 @@ export default function App() {
             <button
               onClick={exitDemo}
               title="点击退出演示模式"
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/25 transition-all active:scale-[0.96] cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-amber-500/15 border border-amber-500/30 text-amber-300 hover:bg-amber-500/25 transition-all active:scale-[0.96] cursor-pointer shadow-xs"
             >
-              <Sparkles className="size-3 text-amber-500" />
+              <Sparkles className="size-3 text-amber-400" />
               演示模式 · 点击退出
             </button>
           )}
@@ -198,7 +198,7 @@ export default function App() {
           </Button>
 
           <Button variant="glass" size="icon" onClick={toggleTheme} title="切换外观主题">
-            {dark ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4 text-slate-700" />}
+            {dark ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4 text-white" />}
           </Button>
         </div>
       </header>

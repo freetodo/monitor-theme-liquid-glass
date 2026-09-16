@@ -45,11 +45,11 @@ function Flow({ down, up, className }: { down: string; up: string; className?: s
   return (
     <div className={cn("tnum grid grid-cols-1 gap-x-2 sm:grid-cols-2", className)}>
       <span className="inline-flex items-center gap-1">
-        <ArrowDown className="size-3 shrink-0 text-blue-500 dark:text-blue-400" />
+        <ArrowDown className="size-3 shrink-0 text-blue-400" />
         {down}
       </span>
       <span className="inline-flex items-center gap-1">
-        <ArrowUp className="size-3 shrink-0 text-purple-500 dark:text-purple-400" />
+        <ArrowUp className="size-3 shrink-0 text-purple-400" />
         {up}
       </span>
     </div>
@@ -117,7 +117,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         label="节点数量"
         colorClass={{
           bg: "bg-blue-500/15 dark:bg-blue-500/25",
-          text: "text-blue-600 dark:text-blue-400",
+          text: "text-blue-400",
         }}
       >
         <div className="tnum mt-2 text-2xl font-semibold tracking-tight">
@@ -125,9 +125,9 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         </div>
         <div className="mt-auto pt-1 text-xs text-muted-foreground">
           {nodes.length - online.length > 0 ? (
-            <span className="text-amber-600 dark:text-amber-400">{nodes.length - online.length} 个离线</span>
+            <span className="text-amber-400">{nodes.length - online.length} 个离线</span>
           ) : (
-            <span className="text-emerald-600 dark:text-emerald-400">全部在线</span>
+            <span className="text-emerald-400">全部在线</span>
           )}
         </div>
       </Tile>
@@ -137,7 +137,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         label="最忙节点"
         colorClass={{
           bg: "bg-amber-500/15 dark:bg-amber-500/25",
-          text: "text-amber-600 dark:text-amber-400",
+          text: "text-amber-400",
         }}
       >
         <div className="tnum mt-2 text-2xl font-semibold tracking-tight">
@@ -146,7 +146,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         <div
           className={cn(
             "mt-auto truncate pt-1 text-xs",
-            cpu >= 85 ? "font-semibold text-rose-500" : "text-muted-foreground",
+            cpu >= 85 ? "font-semibold text-rose-400" : "text-muted-foreground",
           )}
         >
           {busiest ? busiest.name : "无在线节点"}
@@ -158,7 +158,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         label="今日流量"
         colorClass={{
           bg: "bg-purple-500/15 dark:bg-purple-500/25",
-          text: "text-purple-600 dark:text-purple-400",
+          text: "text-purple-400",
         }}
       >
         <Flow
@@ -175,7 +175,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         label="实时网速"
         colorClass={{
           bg: "bg-emerald-500/15 dark:bg-emerald-500/25",
-          text: "text-emerald-600 dark:text-emerald-400",
+          text: "text-emerald-400",
         }}
       >
         <Flow down={rate(now.rx)} up={rate(now.tx)} className="mt-2 text-sm font-semibold" />
@@ -184,13 +184,13 @@ export function Summary({ nodes }: { nodes: Node[] }) {
             series={[
               {
                 values: speedHistory.map((s) => s.rx),
-                stroke: "text-blue-500 dark:text-blue-400",
+                stroke: "text-blue-400",
                 gradientId: "spark-rx",
                 fill: "url(#spark-rx)",
               },
               {
                 values: speedHistory.map((s) => s.tx),
-                stroke: "text-purple-500 dark:text-purple-400",
+                stroke: "text-purple-400",
                 gradientId: "spark-tx",
                 fill: "url(#spark-tx)",
               },

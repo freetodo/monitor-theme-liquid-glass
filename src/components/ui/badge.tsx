@@ -22,7 +22,7 @@ const badgeVariants = cva(
         liquid:
           "border-white/80 bg-white/50 text-foreground shadow-[0_2px_12px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] backdrop-blur-2xl backdrop-saturate-[200%] dark:border-white/[0.18] dark:bg-white/[0.12] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.22)]",
         success:
-          "border-emerald-500/25 bg-emerald-500/15 text-emerald-700 backdrop-blur-xl shadow-[0_2px_8px_rgba(16,185,129,0.15),inset_0_1px_0.5px_rgba(255,255,255,0.6)] dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-400/25",
+          "border-emerald-500/25 bg-emerald-500/15 text-emerald-400 backdrop-blur-xl shadow-[0_2px_8px_rgba(16,185,129,0.15),inset_0_1px_0.5px_rgba(255,255,255,0.6)] dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-400/25",
         ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
       },

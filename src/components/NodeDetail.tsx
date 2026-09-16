@@ -96,7 +96,7 @@ function Tab({ active, onClick, children }: { active: boolean; onClick: () => vo
         "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96]",
         active
           ? "bg-blue-600/85 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 backdrop-blur-md dark:bg-blue-500/85 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.4)]"
-          : "text-slate-800 hover:text-slate-950 hover:bg-white/35 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.12]"
+          : "text-white/85 hover:text-white hover:bg-white/30 dark:text-white/85 dark:hover:text-white dark:hover:bg-white/[0.16]"
       )}
     >
       {children}
@@ -306,7 +306,7 @@ export function NodeDetail({ node }: { node: Node }) {
                 "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96] border shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-2xl",
                 smooth
                   ? "bg-blue-600/85 text-white font-semibold border-blue-400/40 shadow-[0_2px_12px_rgba(37,99,235,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] dark:bg-blue-500/85 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.4)]"
-                  : "bg-white/20 text-slate-800 border-white/60 hover:bg-white/35 hover:text-slate-950 dark:bg-black/30 dark:text-white/80 dark:border-white/15 dark:hover:bg-black/50 dark:hover:text-white"
+                  : "bg-white/20 text-white border-white/60 hover:bg-white/35 hover:text-white dark:bg-black/30 dark:text-white dark:border-white/15 dark:hover:bg-black/50 dark:hover:text-white"
               )}
             >
               <span
@@ -415,8 +415,8 @@ export function NodeDetail({ node }: { node: Node }) {
                       className={cn(
                         "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-2xl transition-all duration-200 cursor-pointer select-none active:scale-[0.96]",
                         shown
-                          ? "border-white/60 bg-white/20 text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] hover:bg-white/35 hover:border-white/90 dark:border-white/[0.18] dark:bg-white/[0.08] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] dark:hover:bg-white/[0.16]"
-                          : "border-black/[0.06] bg-black/[0.03] text-slate-400 opacity-60 hover:opacity-90 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-white/40",
+                          ? "border-white/60 bg-white/20 text-white shadow-[0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] hover:bg-white/35 hover:border-white/90 dark:border-white/[0.18] dark:bg-white/[0.08] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] dark:hover:bg-white/[0.16]"
+                          : "border-black/[0.06] bg-black/[0.03] text-white/50 opacity-60 hover:opacity-90 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-white/50",
                       )}
                     >
                       <span
