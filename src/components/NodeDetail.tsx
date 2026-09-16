@@ -95,8 +95,8 @@ function Tab({ active, onClick, children }: { active: boolean; onClick: () => vo
       className={cn(
         "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96]",
         active
-          ? "bg-blue-600 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 dark:bg-blue-500 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.5)]"
-          : "text-slate-800 hover:text-slate-950 hover:bg-white/70 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.14]"
+          ? "bg-blue-600/85 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 backdrop-blur-md dark:bg-blue-500/85 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.4)]"
+          : "text-slate-800 hover:text-slate-950 hover:bg-white/35 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.12]"
       )}
     >
       {children}
@@ -268,7 +268,7 @@ export function NodeDetail({ node }: { node: Node }) {
       </dl>
 
       {node.remark && (
-        <div className="rounded-xl border border-black/[0.04] bg-white/10 px-4 py-3 text-sm backdrop-blur-md dark:border-white/[0.06] dark:bg-white/[0.04] whitespace-pre-wrap">
+        <div className="rounded-xl border border-white/60 bg-white/10 px-4 py-3 text-sm backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all hover:border-white/90 dark:hover:border-white/20 whitespace-pre-wrap">
           {node.remark}
         </div>
       )}
@@ -276,7 +276,7 @@ export function NodeDetail({ node }: { node: Node }) {
       {/* Segmented Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.05] dark:border-white/[0.08] pt-4">
         {/* Apple Segmented Control for Mode Tabs */}
-        <div className="inline-flex rounded-full bg-white/85 p-1 backdrop-blur-2xl dark:bg-black/45 border border-white/90 dark:border-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+        <div className="inline-flex rounded-full bg-white/20 p-1 backdrop-blur-2xl dark:bg-black/30 border border-white/60 dark:border-white/15 shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
           {TABS.map((t) => (
             <Tab key={t.key} active={tab === t.key} onClick={() => setTab(t.key)}>
               {t.label}
@@ -286,7 +286,7 @@ export function NodeDetail({ node }: { node: Node }) {
 
         {/* Apple Segmented Control for Time Ranges & Smoothing Toggle */}
         <div className="flex flex-wrap items-center gap-2.5">
-          <div className="inline-flex rounded-full bg-white/85 p-1 backdrop-blur-2xl dark:bg-black/45 border border-white/90 dark:border-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+          <div className="inline-flex rounded-full bg-white/20 p-1 backdrop-blur-2xl dark:bg-black/30 border border-white/60 dark:border-white/15 shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
             {RANGES_FOR[tab].map((r) => (
               <Tab
                 key={r.hours}
@@ -303,10 +303,10 @@ export function NodeDetail({ node }: { node: Node }) {
               type="button"
               onClick={() => setSmooth(!smooth)}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96] border shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-2xl",
+                "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96] border shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-2xl",
                 smooth
-                  ? "bg-blue-600 text-white font-semibold border-blue-400/40 shadow-[0_2px_12px_rgba(37,99,235,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] dark:bg-blue-500 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.5)]"
-                  : "bg-white/85 text-slate-800 border-white/90 hover:bg-white hover:text-slate-950 dark:bg-black/45 dark:text-white/80 dark:border-white/20 dark:hover:bg-black/65 dark:hover:text-white"
+                  ? "bg-blue-600/85 text-white font-semibold border-blue-400/40 shadow-[0_2px_12px_rgba(37,99,235,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] dark:bg-blue-500/85 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.4)]"
+                  : "bg-white/20 text-slate-800 border-white/60 hover:bg-white/35 hover:text-slate-950 dark:bg-black/30 dark:text-white/80 dark:border-white/15 dark:hover:bg-black/50 dark:hover:text-white"
               )}
             >
               <span
@@ -322,7 +322,7 @@ export function NodeDetail({ node }: { node: Node }) {
       </div>
 
       {!data ? (
-        <Skeleton className="h-64 w-full rounded-2xl" />
+        <Skeleton className="h-64 w-full rounded-xl" />
       ) : failed ? (
         <p className="py-8 text-center text-sm text-destructive" role="alert">读取历史数据失败：{failed}</p>
       ) : tab === "latency" ? (
@@ -415,7 +415,7 @@ export function NodeDetail({ node }: { node: Node }) {
                       className={cn(
                         "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-2xl transition-all duration-200 cursor-pointer select-none active:scale-[0.96]",
                         shown
-                          ? "border-white/90 bg-white/85 text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] hover:bg-white dark:border-white/[0.25] dark:bg-white/[0.18] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)] dark:hover:bg-white/[0.28]"
+                          ? "border-white/60 bg-white/20 text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] hover:bg-white/35 hover:border-white/90 dark:border-white/[0.18] dark:bg-white/[0.08] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] dark:hover:bg-white/[0.16]"
                           : "border-black/[0.06] bg-black/[0.03] text-slate-400 opacity-60 hover:opacity-90 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-white/40",
                       )}
                     >

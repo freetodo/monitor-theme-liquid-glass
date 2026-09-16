@@ -13,8 +13,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         data-slot="card"
         className={cn(
-          "liquid-card group relative flex flex-col gap-6 rounded-[28px] py-6 text-card-foreground transition-all duration-300",
-          interactive && "cursor-pointer hover:-translate-y-1 hover:shadow-xl",
+          "liquid-card group relative flex flex-col gap-6 rounded-xl py-6 text-card-foreground transition-all duration-300",
+          "border border-white/60 bg-white/10 backdrop-blur-2xl shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)]",
+          "dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)]",
+          "hover:border-white/90 dark:hover:border-white/20",
+          interactive && "cursor-pointer hover:-translate-y-1",
           className
         )}
         {...props}

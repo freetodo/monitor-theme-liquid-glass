@@ -10,21 +10,21 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white shadow-md shadow-blue-500/25 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/35 border border-blue-400/30 dark:bg-blue-600 dark:hover:bg-blue-500",
+          "bg-blue-600/85 hover:bg-blue-600 text-white shadow-md shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/35 border border-blue-400/30 backdrop-blur-md dark:bg-blue-600/85 dark:hover:bg-blue-600",
         active:
-          "bg-blue-600 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 dark:bg-blue-500 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.5)]",
+          "bg-blue-600/90 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 backdrop-blur-md dark:bg-blue-500/90 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.4)]",
         glass:
-          "bg-white/85 hover:bg-white text-slate-900 border border-white/90 shadow-[0_2px_10px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] backdrop-blur-2xl dark:bg-white/[0.18] dark:hover:bg-white/[0.28] dark:text-white dark:border-white/[0.25] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.2)]",
+          "bg-white/20 hover:bg-white/35 text-slate-900 border border-white/60 hover:border-white/90 shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-2xl dark:bg-white/[0.08] dark:hover:bg-white/[0.16] dark:text-white dark:border-white/[0.15] dark:hover:border-white/[0.25] dark:shadow-[0_2px_12px_rgba(0,0,0,0.25),inset_0_1px_1px_rgba(255,255,255,0.15)]",
         liquid:
-          "bg-white/85 hover:bg-white text-slate-900 border border-white/90 shadow-[0_2px_10px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] backdrop-blur-2xl dark:bg-white/[0.18] dark:hover:bg-white/[0.28] dark:text-white dark:border-white/[0.25] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.2)]",
+          "bg-white/20 hover:bg-white/35 text-slate-900 border border-white/60 hover:border-white/90 shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-2xl dark:bg-white/[0.08] dark:hover:bg-white/[0.16] dark:text-white dark:border-white/[0.15] dark:hover:border-white/[0.25] dark:shadow-[0_2px_12px_rgba(0,0,0,0.25),inset_0_1px_1px_rgba(255,255,255,0.15)]",
         secondary:
-          "bg-white/70 hover:bg-white/90 text-slate-900 border border-white/80 backdrop-blur-xl shadow-xs dark:bg-white/[0.12] dark:hover:bg-white/[0.22] dark:text-white dark:border-white/[0.18]",
+          "bg-white/15 hover:bg-white/30 text-slate-900 border border-white/50 backdrop-blur-xl shadow-xs dark:bg-white/[0.06] dark:hover:bg-white/[0.14] dark:text-white dark:border-white/[0.12]",
         outline:
-          "border border-white/90 bg-white/55 hover:bg-white/90 text-slate-900 backdrop-blur-xl dark:border-white/[0.22] dark:bg-white/[0.1] dark:hover:bg-white/[0.2] dark:text-white",
+          "border border-white/60 hover:border-white/90 bg-white/10 hover:bg-white/25 text-slate-900 backdrop-blur-xl dark:border-white/[0.15] dark:hover:border-white/[0.25] dark:bg-white/[0.04] dark:hover:bg-white/[0.12] dark:text-white",
         ghost:
-          "hover:bg-white/70 text-slate-900 dark:hover:bg-white/[0.15] dark:text-white",
+          "hover:bg-white/25 text-slate-900 dark:hover:bg-white/[0.1] dark:text-white",
         destructive:
-          "bg-red-500 text-white shadow-md shadow-red-500/25 hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/35 border border-red-400/30",
+          "bg-red-500/85 hover:bg-red-500 text-white shadow-md shadow-red-500/25 hover:shadow-lg hover:shadow-red-500/35 border border-red-400/30 backdrop-blur-md",
         link:
           "text-blue-600 hover:underline dark:text-blue-400 font-normal p-0 h-auto rounded-none",
       },

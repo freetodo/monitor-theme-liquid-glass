@@ -94,8 +94,8 @@ export function NodeCard({ node, onOpen }: { node: Node; onOpen: () => void }) {
       interactive
       sheen
       className={cn(
-        "group min-w-0 cursor-pointer gap-0 p-4 transition-all duration-300 ease-spring",
-        "hover:translate-y-[-4px] hover:shadow-[0_18px_42px_rgba(0,0,0,0.09)] dark:hover:shadow-[0_18px_42px_rgba(0,0,0,0.52)]",
+        "group min-w-0 cursor-pointer gap-0 p-4 transition-all duration-300 ease-spring backdrop-blur-2xl",
+        "hover:translate-y-[-3px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.25)]",
         "active:scale-[0.98]",
       )}
       role="button"

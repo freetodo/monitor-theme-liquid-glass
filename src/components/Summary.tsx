@@ -19,7 +19,7 @@ function Tile({
   return (
     <Card
       sheen
-      className="group gap-0 p-4.5 transition-all duration-300 ease-spring hover:translate-y-[-2px] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_16px_36px_rgba(0,0,0,0.5)]"
+      className="group gap-0 p-4.5 transition-all duration-300 ease-spring backdrop-blur-2xl hover:translate-y-[-2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.25)]"
     >
       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
         <div

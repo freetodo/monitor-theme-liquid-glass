@@ -183,7 +183,7 @@ export const LiquidGlass = React.forwardRef<HTMLDivElement, LiquidGlassProps>(
     )
 
     const variantStyles = {
-      card: "rounded-2xl border border-white/60 bg-white/65 dark:border-white/[0.14] dark:bg-[rgba(26,29,36,0.65)]",
+      card: "rounded-xl border border-white/60 bg-white/10 dark:border-white/[0.1] dark:bg-white/[0.05]",
       panel: "rounded-3xl border border-white/70 bg-white/75 dark:border-white/[0.16] dark:bg-[rgba(20,22,28,0.72)]",
       pill: "rounded-full border border-white/50 bg-white/50 dark:border-white/[0.12] dark:bg-white/[0.08]",
       button: "rounded-xl border border-white/70 bg-white/60 dark:border-white/[0.15] dark:bg-white/[0.1]",

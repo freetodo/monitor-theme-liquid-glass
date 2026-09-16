@@ -70,15 +70,29 @@ export class ApiError extends Error {
   }
 }
 
-export let isDemoMode = typeof window !== "undefined" && localStorage.getItem("monitor_demo") === "true"
+const isExplicitLive =
+  typeof window !== "undefined" &&
+  (new URLSearchParams(window.location.search).get("mode") === "live" ||
+    new URLSearchParams(window.location.search).get("live") !== null ||
+    localStorage.getItem("monitor_live") === "true")
+
+if (typeof window !== "undefined" && isExplicitLive) {
+  localStorage.removeItem("monitor_demo")
+  localStorage.setItem("monitor_live", "true")
+}
+
+export let isDemoMode =
+  typeof window !== "undefined" && !isExplicitLive && localStorage.getItem("monitor_demo") === "true"
 
 export function setDemoMode(val: boolean) {
   isDemoMode = val
   if (typeof window !== "undefined") {
     if (val) {
       localStorage.setItem("monitor_demo", "true")
+      localStorage.removeItem("monitor_live")
     } else {
       localStorage.removeItem("monitor_demo")
+      localStorage.setItem("monitor_live", "true")
     }
   }
 }
@@ -204,6 +218,10 @@ export function useNodes() {
           if (e instanceof ApiError && e.status === 401) {
             setClosed(true)
             setError(e.message)
+            return
+          }
+          if (localStorage.getItem("monitor_live") === "true") {
+            setError(e.message || "连接服务器失败")
             return
           }
           // Automatically fallback to demo mode when running standalone without hub

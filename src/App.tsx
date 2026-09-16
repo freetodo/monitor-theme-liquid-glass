@@ -68,6 +68,10 @@ export default function App() {
     return api<Me>("/me")
       .then((next) => { setMe(next); setMeError("") })
       .catch((_e: Error) => {
+        if (localStorage.getItem("monitor_live") === "true") {
+          setMeError(_e.message || "连接服务失败")
+          return
+        }
         // Automatically fallback to demo mode when running standalone without hub
         setDemoMode(true)
         setDemo(true)
@@ -209,9 +213,9 @@ export default function App() {
 
         {open !== null ? (
           !nodes ? (
-            <Skeleton className="h-96 rounded-2xl" />
+            <Skeleton className="h-96 rounded-xl" />
           ) : selected ? (
-            <Suspense fallback={<Skeleton className="h-96 rounded-2xl" />}>
+            <Suspense fallback={<Skeleton className="h-96 rounded-xl" />}>
               <div className="mb-2 sm:hidden">
                 <Button variant="glass" size="sm" onClick={() => go(null)} className="gap-1.5">
                   <ArrowLeft className="size-3.5" />
@@ -231,7 +235,7 @@ export default function App() {
         ) : !nodes ? (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {[0, 1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-72 rounded-2xl" />
+              <Skeleton key={i} className="h-72 rounded-xl" />
             ))}
           </div>
         ) : (
