@@ -167,14 +167,9 @@ export default function App() {
       <header className="sticky top-3 z-30 mx-auto max-w-[1400px] px-4 sm:px-6 transition-all">
         <div className="monitor-nav flex items-center gap-3 rounded-full px-4 py-2.5">
           <button
-            className="group flex items-center gap-2.5 text-base font-semibold tracking-tight transition-opacity hover:opacity-80"
+            className="group flex items-center text-base font-semibold tracking-tight transition-opacity hover:opacity-80 cursor-pointer"
             onClick={() => go(null)}
           >
-            {/* Apple-style squircle emblem with specular sheen */}
-            <span className="relative flex size-7 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr from-blue-600 via-indigo-500 to-cyan-400 text-white shadow-[0_2px_10px_rgba(0,113,227,0.4)]">
-              <span className="size-2 rounded-full bg-white animate-pulse" />
-              <span className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/30 to-transparent" />
-            </span>
             <span className="text-foreground font-semibold">{"Monitor"}</span>
           </button>
 
