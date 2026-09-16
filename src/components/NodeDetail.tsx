@@ -93,10 +93,10 @@ function Tab({ active, onClick, children }: { active: boolean; onClick: () => vo
       onClick={onClick}
       type="button"
       className={cn(
-        "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer",
+        "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96]",
         active
-          ? "bg-blue-600 text-white font-semibold shadow-[0_2px_10px_rgba(37,99,235,0.35)] scale-[1.02] dark:bg-blue-500 dark:text-white dark:shadow-[0_2px_12px_rgba(59,130,246,0.45)]"
-          : "text-slate-800 hover:text-slate-950 hover:bg-black/[0.06] dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.12]"
+          ? "bg-blue-600 text-white font-semibold shadow-[0_2px_12px_rgba(37,99,235,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] border border-blue-400/40 dark:bg-blue-500 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.5)]"
+          : "text-slate-800 hover:text-slate-950 hover:bg-white/70 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.14]"
       )}
     >
       {children}
@@ -130,7 +130,10 @@ function Fact({ label, value }: { label: string; value?: string | number | null 
 }
 
 export function NodeDetail({ node }: { node: Node }) {
-  const [tab, setTab] = useState<(typeof TABS)[number]["key"]>("resources")
+  const [tab, setTab] = useState<(typeof TABS)[number]["key"]>(() => {
+    const p = new URLSearchParams(location.search).get("tab")
+    return p === "latency" ? "latency" : "resources"
+  })
   const [ranges, setRanges] = useState({ resources: 6, latency: 6 })
   const hours = ranges[tab]
   const [smooth, setSmooth] = useState(false)
@@ -273,7 +276,7 @@ export function NodeDetail({ node }: { node: Node }) {
       {/* Segmented Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.05] dark:border-white/[0.08] pt-4">
         {/* Apple Segmented Control for Mode Tabs */}
-        <div className="inline-flex rounded-full bg-white/80 p-1 backdrop-blur-2xl dark:bg-black/40 border border-white/90 dark:border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+        <div className="inline-flex rounded-full bg-white/85 p-1 backdrop-blur-2xl dark:bg-black/45 border border-white/90 dark:border-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
           {TABS.map((t) => (
             <Tab key={t.key} active={tab === t.key} onClick={() => setTab(t.key)}>
               {t.label}
@@ -281,9 +284,9 @@ export function NodeDetail({ node }: { node: Node }) {
           ))}
         </div>
 
-        {/* Apple Segmented Control for Time Ranges */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex rounded-full bg-white/80 p-1 backdrop-blur-2xl dark:bg-black/40 border border-white/90 dark:border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+        {/* Apple Segmented Control for Time Ranges & Smoothing Toggle */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <div className="inline-flex rounded-full bg-white/85 p-1 backdrop-blur-2xl dark:bg-black/45 border border-white/90 dark:border-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
             {RANGES_FOR[tab].map((r) => (
               <Tab
                 key={r.hours}
@@ -296,15 +299,24 @@ export function NodeDetail({ node }: { node: Node }) {
           </div>
 
           {tab === "latency" && (
-            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/80 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-800 backdrop-blur-2xl transition-all hover:bg-white hover:text-slate-950 dark:border-white/15 dark:bg-black/40 dark:text-white/80 dark:hover:bg-black/60 dark:hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] select-none">
-              <input
-                type="checkbox"
-                checked={smooth}
-                onChange={(e) => setSmooth(e.target.checked)}
-                className="accent-blue-600 rounded"
+            <button
+              type="button"
+              onClick={() => setSmooth(!smooth)}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer active:scale-[0.96] border shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-2xl",
+                smooth
+                  ? "bg-blue-600 text-white font-semibold border-blue-400/40 shadow-[0_2px_12px_rgba(37,99,235,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] dark:bg-blue-500 dark:text-white dark:border-blue-300/40 dark:shadow-[0_2px_14px_rgba(59,130,246,0.5)]"
+                  : "bg-white/85 text-slate-800 border-white/90 hover:bg-white hover:text-slate-950 dark:bg-black/45 dark:text-white/80 dark:border-white/20 dark:hover:bg-black/65 dark:hover:text-white"
+              )}
+            >
+              <span
+                className={cn(
+                  "size-2 rounded-full transition-all",
+                  smooth ? "bg-white shadow-[0_0_6px_rgba(255,255,255,0.9)]" : "bg-slate-400 dark:bg-white/40"
+                )}
               />
               削峰平滑
-            </label>
+            </button>
           )}
         </div>
       </div>
@@ -401,18 +413,18 @@ export function NodeDetail({ node }: { node: Node }) {
                         setHiddenProbes((h) => (shown ? [...h, s.id] : h.filter((id) => id !== s.id)))
                       }
                       className={cn(
-                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-xl transition-all cursor-pointer select-none",
+                        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-2xl transition-all duration-200 cursor-pointer select-none active:scale-[0.96]",
                         shown
-                          ? "border-white/80 bg-white/85 text-slate-800 shadow-xs hover:bg-white dark:border-white/[0.2] dark:bg-white/[0.18] dark:text-white dark:hover:bg-white/[0.25]"
-                          : "border-black/5 bg-white/40 text-slate-600 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:text-white",
+                          ? "border-white/90 bg-white/85 text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] hover:bg-white dark:border-white/[0.25] dark:bg-white/[0.18] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)] dark:hover:bg-white/[0.28]"
+                          : "border-black/[0.06] bg-black/[0.03] text-slate-400 opacity-60 hover:opacity-90 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-white/40",
                       )}
                     >
                       <span
-                        className="size-2 rounded-full"
-                        style={{ backgroundColor: style(s.id).stroke }}
+                        className={cn("size-2 rounded-full transition-all", shown && "shadow-[0_0_6px_currentColor]")}
+                        style={{ backgroundColor: style(s.id).stroke, color: style(s.id).stroke }}
                         aria-hidden
                       />
-                      {s.name}
+                      <span className={cn(!shown && "line-through opacity-75")}>{s.name}</span>
                       {s.loss > 0 && (
                         <span className="tnum text-destructive">
                           丢 {s.loss < 1 ? "<1" : Math.round(s.loss)}%

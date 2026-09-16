@@ -4,7 +4,6 @@ import { ArrowLeft, Moon, Sparkles, Sun, Wrench } from "lucide-react"
 import { NodeCard } from "@/components/NodeCard"
 import { Summary } from "@/components/Summary"
 import { BackgroundScroll } from "@/components/BackgroundScroll"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -39,6 +38,9 @@ function useNodeRoute() {
 
 function useTheme() {
   const [dark, setDark] = useState(() => {
+    const p = new URLSearchParams(location.search).get("theme")
+    if (p === "dark") return true
+    if (p === "light") return false
     const saved = localStorage.getItem("theme")
     return saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches
   })
@@ -166,10 +168,14 @@ export default function App() {
           </button>
 
           {demo && (
-            <Badge variant="liquid" className="ml-1 cursor-pointer text-xs" onClick={exitDemo} title="点击退出演示模式">
+            <button
+              onClick={exitDemo}
+              title="点击退出演示模式"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/25 transition-all active:scale-[0.96] cursor-pointer shadow-xs"
+            >
               <Sparkles className="size-3 text-amber-500" />
               演示模式 · 点击退出
-            </Badge>
+            </button>
           )}
 
           <div className="flex-1" />
@@ -217,7 +223,7 @@ export default function App() {
           ) : (
             <Card className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
               <p>节点不存在或未公开。</p>
-              <Button variant="link" onClick={() => go(null)} className="mt-2">
+              <Button variant="glass" size="sm" onClick={() => go(null)} className="mt-3">
                 返回列表
               </Button>
             </Card>
