@@ -7,7 +7,7 @@
 
 :root {
   --radius: 1rem;
-  --background: #f1f4f9;
+  --background: #f8f9fb;
   --foreground: oklch(0.18 0.02 260);
   --card: rgba(255, 255, 255, 0.42);
   --card-foreground: oklch(0.18 0.02 260);
@@ -50,7 +50,7 @@
 }
 
 .dark {
-  --background: #0d111a;
+  --background: #111318;
   --foreground: oklch(0.98 0.005 240);
   --card: rgba(18, 22, 32, 0.52);
   --card-foreground: oklch(0.98 0.005 240);
@@ -135,13 +135,11 @@
   }
   body {
     @apply text-foreground;
-    background-color: #f2f5f9;
+    background-color: #f8f9fb;
     background-image:
-      radial-gradient(at 12% 15%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
-      radial-gradient(at 88% 18%, rgba(168, 85, 247, 0.22) 0px, transparent 50%),
-      radial-gradient(at 50% 52%, rgba(59, 130, 246, 0.16) 0px, transparent 60%),
-      radial-gradient(at 15% 82%, rgba(20, 184, 166, 0.2) 0px, transparent 55%),
-      radial-gradient(at 85% 85%, rgba(244, 63, 94, 0.18) 0px, transparent 50%);
+      radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.05) 0px, transparent 50%),
+      radial-gradient(at 50% 60%, rgba(59, 130, 246, 0.04) 0px, transparent 60%);
     background-attachment: fixed;
     background-size: cover;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -151,13 +149,11 @@
   }
 
   .dark body {
-    background-color: #0c0f17;
+    background-color: #111318;
     background-image:
-      radial-gradient(at 12% 15%, rgba(99, 102, 241, 0.32) 0px, transparent 50%),
-      radial-gradient(at 88% 18%, rgba(168, 85, 247, 0.3) 0px, transparent 50%),
-      radial-gradient(at 50% 52%, rgba(37, 99, 235, 0.24) 0px, transparent 60%),
-      radial-gradient(at 15% 82%, rgba(13, 148, 136, 0.28) 0px, transparent 55%),
-      radial-gradient(at 85% 85%, rgba(225, 29, 72, 0.25) 0px, transparent 50%);
+      radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+      radial-gradient(at 50% 60%, rgba(37, 99, 235, 0.05) 0px, transparent 60%);
     background-attachment: fixed;
     background-size: cover;
   }
@@ -209,45 +205,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Ambient glow background orbs */
-.ambient-mesh {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  opacity: 0.65;
-  transition: opacity 0.5s ease;
-}
-
-.dark .ambient-mesh {
-  opacity: 0.45;
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  will-change: transform;
-}
-
-@keyframes orb-float-1 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(40px, -30px, 0) scale(1.1); }
-}
-@keyframes orb-float-2 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-35px, 25px, 0) scale(0.92); }
-}
-@keyframes orb-float-3 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(30px, 35px, 0) scale(1.06); }
-}
-
-.ambient-orb-1 { animation: orb-float-1 20s ease-in-out infinite; }
-.ambient-orb-2 { animation: orb-float-2 24s ease-in-out infinite; }
-.ambient-orb-3 { animation: orb-float-3 28s ease-in-out infinite; }
-
 /* Liquid Glass Utilities */
 .liquid-glass-surface {
   background: var(--liquid-glass-bg);
@@ -291,3 +248,165 @@
   animation: card-in 0.45s cubic-bezier(0.32, 0.72, 0, 1) both;
   will-change: transform, opacity;
 }
+.liquid-card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+.dark .liquid-card {
+  background: rgba(20, 24, 33, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+:root { --muted-foreground: oklch(0.45 0.03 240); }
+.dark { --muted-foreground: oklch(0.75 0.018 240); }
+
+/* Dark mode: white typography for glass panels on dark background. */
+.dark {
+  --foreground: #fff;
+  --card-foreground: #fff;
+  --muted-foreground: rgb(255 255 255 / 76%);
+  --secondary-foreground: #fff;
+  --accent-foreground: #fff;
+  --popover: #172631;
+  --popover-foreground: #fff;
+  --primary: #b3dcff;
+  --border: rgb(255 255 255 / 20%);
+}
+body, .dark body {
+  background-color: #f8f9fb;
+  background-image:
+    radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(59, 130, 246, 0.04) 0px, transparent 60%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.dark body {
+  background-color: #111318;
+  background-image:
+    radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(37, 99, 235, 0.05) 0px, transparent 60%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.monitor-nav {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  color: inherit;
+}
+.dark .monitor-nav {
+  background: rgba(20, 24, 33, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.logout-glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+.logout-glass:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+.logout-glass:active {
+  transform: scale(0.96);
+}
+.dark .logout-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+.dark .logout-glass:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+[data-slot="badge"][data-variant="liquid"], [data-slot="badge"][data-variant="glass"] {
+  background: rgba(255, 255, 255, 0.4);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark [data-slot="badge"][data-variant="liquid"], .dark [data-slot="badge"][data-variant="glass"] {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+[data-slot="badge"][data-variant="success"] { color: #10b981; }
+.dark [data-slot="badge"][data-variant="success"] { color: #a7f3d0; }
+.glass-pill-active,
+.logout-glass.active,
+.logout-glass[aria-pressed="true"],
+.logout-glass[data-state="active"],
+.logout-glass[data-state="on"] {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+}
+.dark .glass-pill-active,
+.dark .logout-glass.active,
+.dark .logout-glass[aria-pressed="true"],
+.dark .logout-glass[data-state="active"],
+.dark .logout-glass[data-state="on"] {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #60a5fa !important;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logout-glass { transition: none; }
+  .logout-glass:hover, .logout-glass:active { transform: none; }
+}
+
+/* Locally hosted Inter keeps metrics and headings consistent across devices. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/inter-latin-variable.woff2") format("woff2");
+}
+body {
+  font-family: "Inter", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  letter-spacing: .005em;
+}
+.dark .liquid-card, .dark .logout-glass {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.liquid-card h3 { font-weight: 500; letter-spacing: -.025em; }
+main h2 { font-weight: 500; letter-spacing: -.025em; }
+.liquid-card .font-semibold { font-weight: 500; }
+.liquid-card .text-2xl { font-weight: 500; letter-spacing: -.045em; }
+.monitor-nav { font-weight: 500; }
+.monitor-nav .font-semibold { font-weight: 500; letter-spacing: -.025em; }
+.logout-glass { font-weight: 450; letter-spacing: .015em; }
+.tnum { font-variant-numeric: tabular-nums; letter-spacing: -.015em; }
+
+

@@ -91,11 +91,12 @@ function Tab({ active, onClick, children }: { active: boolean; onClick: () => vo
   return (
     <button
       onClick={onClick}
+      type="button"
       className={cn(
-        "rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 ease-spring outline-none select-none",
+        "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer",
         active
-          ? "bg-white/95 text-foreground shadow-[0_2px_10px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,1)] dark:bg-white/[0.2] dark:text-white dark:shadow-[0_2px_10px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.25)]"
-          : "text-muted-foreground hover:text-foreground hover:bg-black/[0.04] dark:hover:bg-white/[0.06]",
+          ? "bg-blue-600 text-white font-semibold shadow-[0_2px_10px_rgba(37,99,235,0.35)] scale-[1.02] dark:bg-blue-500 dark:text-white dark:shadow-[0_2px_12px_rgba(59,130,246,0.45)]"
+          : "text-muted-foreground hover:text-foreground hover:bg-black/[0.05] dark:hover:bg-white/[0.08]"
       )}
     >
       {children}
@@ -121,7 +122,7 @@ function despike(points: PingPoint[], window = 7, sigmas = 3): PingPoint[] {
 function Fact({ label, value }: { label: string; value?: string | number | null }) {
   if (value === null || value === undefined || value === "") return null
   return (
-    <div className="rounded-xl border border-white/60 bg-white/50 p-3 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all hover:border-white/90 dark:hover:border-white/20">
+    <div className="rounded-xl border border-white/60 bg-white/10 p-3 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all hover:border-white/90 dark:hover:border-white/20">
       <dt className="text-[11px] font-medium text-muted-foreground">{label}</dt>
       <dd className="mt-0.5 truncate text-sm font-semibold tracking-tight text-foreground">{value}</dd>
     </div>
@@ -264,7 +265,7 @@ export function NodeDetail({ node }: { node: Node }) {
       </dl>
 
       {node.remark && (
-        <div className="rounded-xl border border-black/[0.04] bg-white/40 px-4 py-3 text-sm backdrop-blur-md dark:border-white/[0.06] dark:bg-white/[0.04] whitespace-pre-wrap">
+        <div className="rounded-xl border border-black/[0.04] bg-white/10 px-4 py-3 text-sm backdrop-blur-md dark:border-white/[0.06] dark:bg-white/[0.04] whitespace-pre-wrap">
           {node.remark}
         </div>
       )}
@@ -272,7 +273,7 @@ export function NodeDetail({ node }: { node: Node }) {
       {/* Segmented Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.05] dark:border-white/[0.08] pt-4">
         {/* Apple Segmented Control for Mode Tabs */}
-        <div className="inline-flex rounded-xl bg-black/[0.04] p-1 backdrop-blur-md dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]">
+        <div className="inline-flex rounded-full bg-black/[0.05] p-1 backdrop-blur-xl dark:bg-white/[0.08] border border-black/[0.06] dark:border-white/[0.12] shadow-inner">
           {TABS.map((t) => (
             <Tab key={t.key} active={tab === t.key} onClick={() => setTab(t.key)}>
               {t.label}
@@ -282,7 +283,7 @@ export function NodeDetail({ node }: { node: Node }) {
 
         {/* Apple Segmented Control for Time Ranges */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex rounded-xl bg-black/[0.04] p-1 backdrop-blur-md dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]">
+          <div className="inline-flex rounded-full bg-black/[0.05] p-1 backdrop-blur-xl dark:bg-white/[0.08] border border-black/[0.06] dark:border-white/[0.12] shadow-inner">
             {RANGES_FOR[tab].map((r) => (
               <Tab
                 key={r.hours}
@@ -295,12 +296,12 @@ export function NodeDetail({ node }: { node: Node }) {
           </div>
 
           {tab === "latency" && (
-            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-black/[0.05] bg-white/40 px-2.5 py-1.5 text-xs text-muted-foreground backdrop-blur-md transition-colors hover:text-foreground dark:border-white/[0.08] dark:bg-white/[0.06]">
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/50 px-3.5 py-1.5 text-xs text-muted-foreground backdrop-blur-xl transition-all hover:text-foreground hover:bg-white/80 dark:border-white/[0.14] dark:bg-white/[0.08] dark:hover:bg-white/[0.16] shadow-xs select-none">
               <input
                 type="checkbox"
                 checked={smooth}
                 onChange={(e) => setSmooth(e.target.checked)}
-                className="accent-primary"
+                className="accent-blue-600 rounded"
               />
               削峰平滑
             </label>
@@ -400,10 +401,10 @@ export function NodeDetail({ node }: { node: Node }) {
                         setHiddenProbes((h) => (shown ? [...h, s.id] : h.filter((id) => id !== s.id)))
                       }
                       className={cn(
-                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all",
+                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-xl transition-all cursor-pointer select-none",
                         shown
-                          ? "border-black/[0.08] bg-white/70 shadow-xs dark:border-white/[0.12] dark:bg-white/[0.1]"
-                          : "border-transparent opacity-40 hover:opacity-70",
+                          ? "border-white/80 bg-white/70 text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:bg-white/90 dark:border-white/[0.18] dark:bg-white/[0.14] dark:text-white dark:hover:bg-white/[0.2]"
+                          : "border-transparent bg-black/[0.03] text-muted-foreground/50 opacity-40 hover:opacity-80 dark:bg-white/[0.03]",
                       )}
                     >
                       <span

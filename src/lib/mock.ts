@@ -3,7 +3,7 @@ import type { Node } from "./api"
 export const DEMO_ME = {
   authed: false,
   github: false,
-  site_name: "Apple Monitor",
+  site_name: "Monitor",
   public_page: true,
 }
 

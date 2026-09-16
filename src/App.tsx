@@ -3,10 +3,10 @@ import { ArrowLeft, Moon, Sparkles, Sun, Wrench } from "lucide-react"
 
 import { NodeCard } from "@/components/NodeCard"
 import { Summary } from "@/components/Summary"
+import { BackgroundScroll } from "@/components/BackgroundScroll"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { LiquidGlassFilterDefs } from "@/components/ui/liquid-glass"
 import { Skeleton } from "@/components/ui/skeleton"
 import { api, isDemoMode, setDemoMode, useNodes, type Node } from "@/lib/api"
 import { DEMO_ME } from "@/lib/mock"
@@ -91,7 +91,7 @@ export default function App() {
   const selected = sorted.find((n) => n.id === open)
 
   useEffect(() => {
-    document.title = [selected?.name, me?.site_name || "Monitor"].filter(Boolean).join(" · ")
+    document.title = [selected?.name, "Monitor"].filter(Boolean).join(" · ")
   }, [selected?.name, me?.site_name])
 
   const enableDemo = () => {
@@ -111,7 +111,7 @@ export default function App() {
   // Loading or connection error state with Apple Glass card
   if (!me) return (
     <div className="relative grid min-h-svh place-items-center p-6 text-sm">
-      <LiquidGlassFilterDefs />
+      <BackgroundScroll />
       <div className="ambient-mesh" aria-hidden>
         <div className="ambient-orb ambient-orb-1 -top-20 left-1/4 h-96 w-96 bg-blue-500/25 dark:bg-blue-600/20" />
         <div className="ambient-orb ambient-orb-2 top-1/2 -right-20 h-96 w-96 bg-purple-500/25 dark:bg-purple-600/20" />
@@ -149,18 +149,10 @@ export default function App() {
 
   return (
     <div className="relative min-h-svh selection:bg-primary/20">
-      <LiquidGlassFilterDefs />
-      {/* Apple Ambient Mesh Diffuse Background Orbs */}
-      <div className="ambient-mesh" aria-hidden>
-        <div className="ambient-orb ambient-orb-1 -top-32 left-1/5 h-[36rem] w-[36rem] bg-indigo-500/35 dark:bg-indigo-600/30" />
-        <div className="ambient-orb ambient-orb-2 top-1/4 -right-20 h-[34rem] w-[34rem] bg-purple-500/35 dark:bg-purple-600/30" />
-        <div className="ambient-orb ambient-orb-3 top-2/3 left-10 h-[32rem] w-[32rem] bg-cyan-400/30 dark:bg-teal-500/25" />
-        <div className="ambient-orb ambient-orb-1 bottom-10 right-1/4 h-[30rem] w-[30rem] bg-pink-500/25 dark:bg-rose-500/20" />
-      </div>
-
+      <BackgroundScroll />
       {/* Floating Apple Liquid Glass Navigation Island */}
       <header className="sticky top-3 z-30 mx-auto max-w-[1400px] px-4 sm:px-6 transition-all">
-        <div className="flex items-center gap-3 rounded-2xl border border-white/80 bg-white/45 px-4 py-2.5 backdrop-blur-3xl backdrop-saturate-[210%] shadow-[0_12px_36px_rgba(0,0,0,0.06),inset_0_0_0_1px_rgba(255,255,255,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.95)] dark:border-white/[0.16] dark:bg-[rgba(18,22,32,0.55)] dark:shadow-[0_16px_44px_rgba(0,0,0,0.5),inset_0_0_0_1px_rgba(255,255,255,0.12),inset_0_1.5px_2px_rgba(255,255,255,0.25)]">
+        <div className="monitor-nav flex items-center gap-3 rounded-full px-4 py-2.5">
           <button
             className="group flex items-center gap-2.5 text-base font-semibold tracking-tight transition-opacity hover:opacity-80"
             onClick={() => go(null)}
@@ -170,7 +162,7 @@ export default function App() {
               <span className="size-2 rounded-full bg-white animate-pulse" />
               <span className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/30 to-transparent" />
             </span>
-            <span className="text-foreground font-semibold">{me.site_name || "Monitor"}</span>
+            <span className="text-foreground font-semibold">{"Monitor"}</span>
           </button>
 
           {demo && (
@@ -189,7 +181,7 @@ export default function App() {
             </Button>
           )}
 
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="glass" size="sm" asChild>
             <a href="/admin/">
               <Wrench className="size-3.5" /> {me.authed ? "进入后台" : "登录"}
             </a>

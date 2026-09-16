@@ -12,19 +12,19 @@ export function LiquidGlassFilterDefs({ id = "liquid-glass-filter" }: { id?: str
   return (
     <svg className="pointer-events-none absolute -z-50 h-0 w-0 opacity-0" aria-hidden="true">
       <defs>
-        <filter id={id} x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+        <filter id={id} x="-35%" y="-35%" width="170%" height="170%" colorInterpolationFilters="sRGB">
           {/* Base displacement map */}
           <feImage
             href={DISPLACEMENT_MAP}
             result="DISPLACEMENT_MAP"
-            preserveAspectRatio="none"
+            preserveAspectRatio="xMidYMid slice"
             x="0"
             y="0"
             width="100%"
             height="100%"
           />
 
-          {/* Extract edges */}
+          {/* Extract edges for masking */}
           <feColorMatrix
             in="DISPLACEMENT_MAP"
             type="matrix"
@@ -35,14 +35,17 @@ export function LiquidGlassFilterDefs({ id = "liquid-glass-filter" }: { id?: str
             result="EDGE_INTENSITY"
           />
           <feComponentTransfer in="EDGE_INTENSITY" result="EDGE_MASK">
-            <feFuncA type="discrete" tableValues="0 0.1 0.85 1" />
+            <feFuncA type="discrete" tableValues="0 0.1 1" />
           </feComponentTransfer>
+
+          {/* Preserve undistorted center */}
+          <feOffset in="SourceGraphic" dx={0} dy={0} result="CENTER_ORIGINAL" />
 
           {/* Red channel displacement */}
           <feDisplacementMap
             in="SourceGraphic"
             in2="DISPLACEMENT_MAP"
-            scale={-22}
+            scale={-80}
             xChannelSelector="R"
             yChannelSelector="B"
             result="RED_DISPLACED"
@@ -61,7 +64,7 @@ export function LiquidGlassFilterDefs({ id = "liquid-glass-filter" }: { id?: str
           <feDisplacementMap
             in="SourceGraphic"
             in2="DISPLACEMENT_MAP"
-            scale={-18}
+            scale={-88}
             xChannelSelector="R"
             yChannelSelector="B"
             result="GREEN_DISPLACED"
@@ -80,7 +83,7 @@ export function LiquidGlassFilterDefs({ id = "liquid-glass-filter" }: { id?: str
           <feDisplacementMap
             in="SourceGraphic"
             in2="DISPLACEMENT_MAP"
-            scale={-14}
+            scale={-96}
             xChannelSelector="R"
             yChannelSelector="B"
             result="BLUE_DISPLACED"
@@ -100,22 +103,19 @@ export function LiquidGlassFilterDefs({ id = "liquid-glass-filter" }: { id?: str
           <feBlend in="RED_CHANNEL" in2="GB_COMBINED" mode="screen" result="RGB_COMBINED" />
 
           {/* Soften chromatic aberration */}
-          <feGaussianBlur in="RGB_COMBINED" stdDeviation="0.4" result="ABERRATED_BLURRED" />
+          <feGaussianBlur in="RGB_COMBINED" stdDeviation="0.3" result="ABERRATED_BLURRED" />
 
-          {/* Apply edge mask */}
+          {/* Apply edge mask — distortion only at edges */}
           <feComposite in="ABERRATED_BLURRED" in2="EDGE_MASK" operator="in" result="EDGE_ABERRATION" />
 
           {/* Clean center preservation */}
           <feComponentTransfer in="EDGE_MASK" result="INVERTED_MASK">
             <feFuncA type="table" tableValues="1 0" />
           </feComponentTransfer>
-          <feComposite in="SourceGraphic" in2="INVERTED_MASK" operator="in" result="CENTER_CLEAN" />
+          <feComposite in="CENTER_ORIGINAL" in2="INVERTED_MASK" operator="in" result="CENTER_CLEAN" />
 
-          {/* Merge edge refraction with clean center */}
-          <feMerge>
-            <feMergeNode in="CENTER_CLEAN" />
-            <feMergeNode in="EDGE_ABERRATION" />
-          </feMerge>
+          {/* Final composite: clean center + distorted edges */}
+          <feComposite in="EDGE_ABERRATION" in2="CENTER_CLEAN" operator="over" />
         </filter>
       </defs>
     </svg>
@@ -225,6 +225,18 @@ export const LiquidGlass = React.forwardRef<HTMLDivElement, LiquidGlassProps>(
         {/* Specular Edge Prismatic Glow */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent dark:via-white/30"
+          aria-hidden="true"
+        />
+
+        {/* Refraction Warp Layer — SVG displacement applied to backdrop */}
+        <span
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            borderRadius: "inherit",
+            backdropFilter: "blur(20px) saturate(140%)",
+            WebkitBackdropFilter: "blur(20px) saturate(140%)",
+            filter: 'url("#liquid-glass-filter")',
+          }}
           aria-hidden="true"
         />
 
