@@ -22,10 +22,10 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
             "hover:border-white/90 dark:hover:border-white/25",
           ],
           variant === "translucent" && [
-            // 节点总结卡片与次级组件：超高透明度、极简通透
-            "liquid-card-translucent border border-white/20 bg-white/[0.02] backdrop-blur-xs shadow-none",
-            "dark:border-white/[0.05] dark:bg-white/[0.005]",
-            "hover:border-white/35 hover:bg-white/[0.06] dark:hover:border-white/[0.1] dark:hover:bg-white/[0.015]",
+            // 节点总结卡片与次级组件：高透明度、轻透悬浮质感
+            "liquid-card-translucent border border-white/30 bg-white/[0.08] backdrop-blur-md shadow-xs",
+            "dark:border-white/[0.06] dark:bg-white/[0.015] dark:shadow-none",
+            "hover:border-white/45 hover:bg-white/[0.14] dark:hover:border-white/[0.1] dark:hover:bg-white/[0.035]",
           ],
           interactive && "cursor-pointer hover:-translate-y-1",
           className
