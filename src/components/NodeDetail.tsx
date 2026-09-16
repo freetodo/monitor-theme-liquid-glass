@@ -96,7 +96,7 @@ function Tab({ active, onClick, children }: { active: boolean; onClick: () => vo
         "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 outline-none select-none cursor-pointer",
         active
           ? "bg-blue-600 text-white font-semibold shadow-[0_2px_10px_rgba(37,99,235,0.35)] scale-[1.02] dark:bg-blue-500 dark:text-white dark:shadow-[0_2px_12px_rgba(59,130,246,0.45)]"
-          : "text-muted-foreground hover:text-foreground hover:bg-black/[0.05] dark:hover:bg-white/[0.08]"
+          : "text-slate-800 hover:text-slate-950 hover:bg-black/[0.06] dark:text-white/80 dark:hover:text-white dark:hover:bg-white/[0.12]"
       )}
     >
       {children}
@@ -273,7 +273,7 @@ export function NodeDetail({ node }: { node: Node }) {
       {/* Segmented Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.05] dark:border-white/[0.08] pt-4">
         {/* Apple Segmented Control for Mode Tabs */}
-        <div className="inline-flex rounded-full bg-black/[0.05] p-1 backdrop-blur-xl dark:bg-white/[0.08] border border-black/[0.06] dark:border-white/[0.12] shadow-inner">
+        <div className="inline-flex rounded-full bg-white/80 p-1 backdrop-blur-2xl dark:bg-black/40 border border-white/90 dark:border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
           {TABS.map((t) => (
             <Tab key={t.key} active={tab === t.key} onClick={() => setTab(t.key)}>
               {t.label}
@@ -283,7 +283,7 @@ export function NodeDetail({ node }: { node: Node }) {
 
         {/* Apple Segmented Control for Time Ranges */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex rounded-full bg-black/[0.05] p-1 backdrop-blur-xl dark:bg-white/[0.08] border border-black/[0.06] dark:border-white/[0.12] shadow-inner">
+          <div className="inline-flex rounded-full bg-white/80 p-1 backdrop-blur-2xl dark:bg-black/40 border border-white/90 dark:border-white/15 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
             {RANGES_FOR[tab].map((r) => (
               <Tab
                 key={r.hours}
@@ -296,7 +296,7 @@ export function NodeDetail({ node }: { node: Node }) {
           </div>
 
           {tab === "latency" && (
-            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/50 px-3.5 py-1.5 text-xs text-muted-foreground backdrop-blur-xl transition-all hover:text-foreground hover:bg-white/80 dark:border-white/[0.14] dark:bg-white/[0.08] dark:hover:bg-white/[0.16] shadow-xs select-none">
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/80 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-800 backdrop-blur-2xl transition-all hover:bg-white hover:text-slate-950 dark:border-white/15 dark:bg-black/40 dark:text-white/80 dark:hover:bg-black/60 dark:hover:text-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] select-none">
               <input
                 type="checkbox"
                 checked={smooth}
@@ -403,8 +403,8 @@ export function NodeDetail({ node }: { node: Node }) {
                       className={cn(
                         "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-xl transition-all cursor-pointer select-none",
                         shown
-                          ? "border-white/80 bg-white/70 text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:bg-white/90 dark:border-white/[0.18] dark:bg-white/[0.14] dark:text-white dark:hover:bg-white/[0.2]"
-                          : "border-transparent bg-black/[0.03] text-muted-foreground/50 opacity-40 hover:opacity-80 dark:bg-white/[0.03]",
+                          ? "border-white/80 bg-white/85 text-slate-800 shadow-xs hover:bg-white dark:border-white/[0.2] dark:bg-white/[0.18] dark:text-white dark:hover:bg-white/[0.25]"
+                          : "border-black/5 bg-white/40 text-slate-600 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:text-white",
                       )}
                     >
                       <span

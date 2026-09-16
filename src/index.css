@@ -269,7 +269,7 @@
 .dark {
   --foreground: #fff;
   --card-foreground: #fff;
-  --muted-foreground: rgb(255 255 255 / 76%);
+  --muted-foreground: rgba(255, 255, 255, 0.85);
   --secondary-foreground: #fff;
   --accent-foreground: #fff;
   --popover: #172631;

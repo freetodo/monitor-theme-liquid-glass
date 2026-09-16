@@ -12,15 +12,15 @@ const buttonVariants = cva(
         default:
           "bg-blue-600 text-white shadow-md shadow-blue-500/25 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/35 border border-blue-500/30 dark:bg-blue-600 dark:hover:bg-blue-500",
         glass:
-          "bg-white/65 hover:bg-white/90 text-foreground border border-white/80 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.9)] backdrop-blur-xl dark:bg-white/[0.1] dark:hover:bg-white/[0.18] dark:text-white dark:border-white/[0.16] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.18)]",
+          "bg-white/80 hover:bg-white text-slate-800 border border-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.05)] backdrop-blur-2xl dark:bg-white/[0.14] dark:hover:bg-white/[0.22] dark:text-white dark:border-white/[0.2] dark:shadow-md",
         liquid:
-          "bg-white/50 hover:bg-white/80 text-foreground border border-white/70 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.95)] backdrop-blur-2xl dark:bg-white/[0.12] dark:hover:bg-white/[0.2] dark:text-white dark:border-white/[0.18]",
+          "bg-white/70 hover:bg-white/95 text-slate-800 border border-white/85 shadow-[0_2px_10px_rgba(0,0,0,0.05)] backdrop-blur-2xl dark:bg-white/[0.16] dark:hover:bg-white/[0.25] dark:text-white dark:border-white/[0.22]",
         secondary:
-          "bg-black/[0.05] hover:bg-black/[0.09] text-foreground border border-black/[0.05] backdrop-blur-md dark:bg-white/[0.08] dark:hover:bg-white/[0.14] dark:text-white dark:border-white/[0.1]",
+          "bg-black/[0.06] hover:bg-black/[0.1] text-slate-800 border border-black/[0.05] backdrop-blur-md dark:bg-white/[0.1] dark:hover:bg-white/[0.18] dark:text-white dark:border-white/[0.12]",
         outline:
-          "border border-black/[0.12] bg-white/30 hover:bg-white/60 text-foreground backdrop-blur-md dark:border-white/[0.18] dark:bg-white/[0.05] dark:hover:bg-white/[0.12] dark:text-white",
+          "border border-black/[0.15] bg-white/50 hover:bg-white/80 text-slate-800 backdrop-blur-md dark:border-white/[0.2] dark:bg-white/[0.08] dark:hover:bg-white/[0.15] dark:text-white",
         ghost:
-          "hover:bg-black/[0.06] text-foreground dark:hover:bg-white/[0.1] dark:text-white",
+          "hover:bg-black/[0.06] text-slate-800 dark:hover:bg-white/[0.12] dark:text-white",
         destructive:
           "bg-red-500 text-white shadow-md shadow-red-500/25 hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/35 border border-red-400/30",
         link:
