@@ -272,29 +272,86 @@
 :root { --muted-foreground: oklch(0.38 0.03 260); }
 .dark { --muted-foreground: oklch(0.75 0.018 240); }
 
-/* Liquid Card Translucent variant for Summary and sub-panels (more transparent) */
+/* 主页节点数量这一行卡片 (Summary row)：移除 liquid-card 中的 box-shadow 和 background */
+.summary-cards .liquid-card,
+.summary-card.liquid-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.summary-cards .liquid-card:hover,
+.summary-card.liquid-card:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.dark .summary-cards .liquid-card,
+.dark .summary-card.liquid-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.dark .summary-cards .liquid-card:hover,
+.dark .summary-card.liquid-card:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 只针对概览区域网格容器的 card 提高字体可视度 */
+.summary-cards .summary-card {
+  color: var(--foreground);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 1px rgba(255, 255, 255, 0.85);
+}
+.dark .summary-cards .summary-card {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.summary-cards .summary-card .text-2xl {
+  font-weight: 700 !important;
+  letter-spacing: -0.035em;
+  color: var(--foreground) !important;
+}
+.dark .summary-cards .summary-card .text-2xl {
+  color: #ffffff !important;
+}
+
+.summary-cards .summary-card .font-semibold {
+  font-weight: 650 !important;
+}
+
+.summary-cards .summary-card .text-muted-foreground {
+  color: oklch(0.28 0.03 260) !important;
+  font-weight: 550 !important;
+}
+.dark .summary-cards .summary-card .text-muted-foreground {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 550 !important;
+}
+
+/* Liquid Card Translucent variant for Summary and sub-panels (transparent) */
 .liquid-card-translucent {
-  background: rgba(255, 255, 255, 0.22) !important;
+  background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.45) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+  box-shadow: none !important;
   backdrop-filter: blur(16px) saturate(160%) brightness(1.06) !important;
   -webkit-backdrop-filter: blur(16px) saturate(160%) brightness(1.06) !important;
 }
 .dark .liquid-card-translucent {
-  background: rgba(255, 255, 255, 0.02) !important;
+  background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: none !important;
   backdrop-filter: blur(14px) saturate(160%) brightness(1) !important;
   -webkit-backdrop-filter: blur(14px) saturate(160%) brightness(1) !important;
 }
 .liquid-card-translucent:hover {
-  background: rgba(255, 255, 255, 0.32) !important;
+  background: transparent !important;
   border-color: rgba(255, 255, 255, 0.65) !important;
+  box-shadow: none !important;
 }
 .dark .liquid-card-translucent:hover {
-  background: rgba(255, 255, 255, 0.045) !important;
+  background: transparent !important;
   border-color: rgba(255, 255, 255, 0.14) !important;
+  box-shadow: none !important;
 }
+
 
 /* Dark mode typography & surface colors */
 .dark {
