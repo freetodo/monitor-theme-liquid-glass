@@ -42,7 +42,7 @@ function Flow({ down, up, className }: { down: string; up: string; className?: s
         {down}
       </span>
       <span className="inline-flex items-center gap-1">
-        <ArrowUp className="size-3 shrink-0 text-white/70" />
+        <ArrowUp className="size-3 shrink-0 text-slate-500 dark:text-white/70" />
         {up}
       </span>
     </div>
@@ -155,7 +155,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
               },
               {
                 values: speedHistory.map((s) => s.tx),
-                stroke: "text-white/60",
+                stroke: "text-slate-400 dark:text-white/60",
                 gradientId: "spark-tx",
                 fill: "url(#spark-tx)",
               },

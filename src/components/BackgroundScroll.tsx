@@ -17,31 +17,35 @@ export function BackgroundScroll() {
       {/* 居中双翼背景图：紧凑间距，优雅留白 */}
       <div className="mx-auto flex h-full w-full justify-center gap-4 sm:gap-6 lg:gap-8 px-2 sm:px-4">
         {/* 靠左侧背景图 */}
-        <div className="relative w-1/2 max-w-[1300px] h-[85vh] sm:h-[90vh] min-h-[520px] -top-6 rounded-[32px] sm:rounded-[44px] overflow-hidden shadow-2xl transition-opacity duration-700 border border-white/25 dark:border-white/10">
+        <div className="relative w-1/2 max-w-[1300px] h-[85vh] sm:h-[90vh] min-h-[520px] -top-6 rounded-[32px] sm:rounded-[44px] overflow-hidden shadow-2xl transition-opacity duration-700 border border-white/35 dark:border-white/10">
           <img
             src={leftSrc}
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-85 dark:opacity-40"
+            className="h-full w-full object-cover opacity-80 filter brightness-[1.05] contrast-[0.98] dark:opacity-40 dark:filter-none transition-all duration-700"
           />
+          {/* 亮色模式柔光提亮保护层：防止深色壁纸导致文字失真 */}
+          <div className="absolute inset-0 bg-white/25 dark:bg-transparent pointer-events-none transition-colors duration-500" />
           {/* 边缘融合与底部渐隐 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/25 dark:to-background/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/30 dark:to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent dark:from-background/40" />
         </div>
 
         {/* 靠右侧背景图（错落排布，更有层次） */}
-        <div className="relative w-1/2 max-w-[1300px] h-[85vh] sm:h-[90vh] min-h-[520px] top-16 sm:top-20 rounded-[32px] sm:rounded-[44px] overflow-hidden shadow-2xl transition-opacity duration-700 border border-white/25 dark:border-white/10">
+        <div className="relative w-1/2 max-w-[1300px] h-[85vh] sm:h-[90vh] min-h-[520px] top-16 sm:top-20 rounded-[32px] sm:rounded-[44px] overflow-hidden shadow-2xl transition-opacity duration-700 border border-white/35 dark:border-white/10">
           <img
             src={rightSrc}
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-85 dark:opacity-40"
+            className="h-full w-full object-cover opacity-80 filter brightness-[1.05] contrast-[0.98] dark:opacity-40 dark:filter-none transition-all duration-700"
           />
+          {/* 亮色模式柔光提亮保护层：防止深色壁纸导致文字失真 */}
+          <div className="absolute inset-0 bg-white/25 dark:bg-transparent pointer-events-none transition-colors duration-500" />
           {/* 边缘融合与底部渐隐 */}
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/25 dark:to-background/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/30 dark:to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent dark:from-background/40" />
         </div>
       </div>
     </div>

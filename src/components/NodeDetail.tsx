@@ -122,7 +122,7 @@ function despike(points: PingPoint[], window = 7, sigmas = 3): PingPoint[] {
 function Fact({ label, value }: { label: string; value?: string | number | null }) {
   if (value === null || value === undefined || value === "") return null
   return (
-    <div className="rounded-xl border border-white/35 bg-white/[0.08] p-3 backdrop-blur-md shadow-xs dark:border-white/[0.06] dark:bg-white/[0.015] dark:shadow-none transition-all hover:border-white/50 hover:bg-white/[0.14] dark:hover:border-white/[0.1] dark:hover:bg-white/[0.035]">
+    <div className="rounded-xl border border-white/45 bg-white/25 p-3 backdrop-blur-md shadow-xs dark:border-white/[0.06] dark:bg-white/[0.015] dark:shadow-none transition-all hover:border-white/65 hover:bg-white/35 dark:hover:border-white/[0.1] dark:hover:bg-white/[0.035]">
       <dt className="text-[11px] font-medium text-muted-foreground">{label}</dt>
       <dd className="mt-0.5 truncate text-sm font-semibold tracking-tight text-foreground">{value}</dd>
     </div>
@@ -268,7 +268,7 @@ export function NodeDetail({ node }: { node: Node }) {
       </dl>
 
       {node.remark && (
-        <div className="rounded-xl border border-white/35 bg-white/[0.08] px-4 py-3 text-sm backdrop-blur-md shadow-xs dark:border-white/[0.06] dark:bg-white/[0.015] dark:shadow-none transition-all hover:border-white/50 dark:hover:border-white/15 whitespace-pre-wrap">
+        <div className="rounded-xl border border-white/45 bg-white/25 px-4 py-3 text-sm backdrop-blur-md shadow-xs dark:border-white/[0.06] dark:bg-white/[0.015] dark:shadow-none transition-all hover:border-white/65 dark:hover:border-white/15 whitespace-pre-wrap">
           {node.remark}
         </div>
       )}

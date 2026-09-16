@@ -158,7 +158,7 @@ export function NodeCard({ node, onOpen }: { node: Node; onOpen: () => void }) {
               {m ? rate(m.net_rx) : "—"}
             </span>
             <span className="tnum inline-flex items-center gap-1.5 text-foreground">
-              <ArrowUp className="size-3 text-white/70" />
+              <ArrowUp className="size-3 text-slate-500 dark:text-white/70" />
               {m ? rate(m.net_tx) : "—"}
             </span>
             <span className="tnum inline-flex items-center gap-1.5 text-muted-foreground">
