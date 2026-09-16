@@ -23,11 +23,11 @@ export function BackgroundScroll() {
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-30 dark:opacity-20 filter saturate-[65%]"
+            className="h-full w-full object-cover opacity-85 dark:opacity-40"
           />
           {/* 边缘融合与底部渐隐 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/50 dark:to-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/25 dark:to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
         </div>
 
         {/* 靠右侧背景图（错落排布，更有层次） */}
@@ -37,11 +37,11 @@ export function BackgroundScroll() {
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-30 dark:opacity-20 filter saturate-[65%]"
+            className="h-full w-full object-cover opacity-85 dark:opacity-40"
           />
           {/* 边缘融合与底部渐隐 */}
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/50 dark:to-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/25 dark:to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
         </div>
       </div>
     </div>
