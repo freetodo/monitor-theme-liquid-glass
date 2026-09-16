@@ -16,11 +16,12 @@ function Tile({
 }) {
   return (
     <Card
-      sheen
-      className="group gap-0 p-4.5 transition-all duration-300 ease-spring backdrop-blur-2xl hover:translate-y-[-2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.25)]"
+      variant="translucent"
+      sheen={false}
+      className="group gap-0 p-4.5 transition-all duration-300 ease-spring hover:translate-y-[-2px]"
     >
       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-        <div className="flex size-7 items-center justify-center rounded-xl border border-white/60 dark:border-white/15 bg-white/15 dark:bg-white/10 text-white shadow-[0_2px_6px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.7)] backdrop-blur-md transition-transform duration-300 ease-spring group-hover:scale-110">
+        <div className="flex size-7 items-center justify-center rounded-xl border border-white/40 dark:border-white/10 bg-white/20 dark:bg-white/[0.05] text-foreground dark:text-white shadow-xs backdrop-blur-sm transition-transform duration-300 ease-spring group-hover:scale-110">
           <Icon className="size-3.5" />
         </div>
         <span>{label}</span>

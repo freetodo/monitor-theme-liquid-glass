@@ -41,14 +41,21 @@ function useTheme() {
     const p = new URLSearchParams(location.search).get("theme")
     if (p === "dark") return true
     if (p === "light") return false
-    const saved = localStorage.getItem("theme")
-    return saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches
+    const saved = localStorage.getItem("theme_user_set")
+    if (saved) return saved === "dark"
+    return false // 默认亮色 (Default to bright/light theme)
   })
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark)
-    localStorage.setItem("theme", dark ? "dark" : "light")
   }, [dark])
-  return [dark, () => setDark((d) => !d)] as const
+  const toggleTheme = () => {
+    setDark((d) => {
+      const next = !d
+      localStorage.setItem("theme_user_set", next ? "dark" : "light")
+      return next
+    })
+  }
+  return [dark, toggleTheme] as const
 }
 
 export default function App() {
@@ -225,7 +232,7 @@ export default function App() {
               <NodeDetail node={selected} />
             </Suspense>
           ) : (
-            <Card className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
+            <Card variant="translucent" className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
               <p>节点不存在或未公开。</p>
               <Button variant="glass" size="sm" onClick={() => go(null)} className="mt-3">
                 返回列表
@@ -242,7 +249,7 @@ export default function App() {
           <>
             <Summary nodes={sorted} />
             {sorted.length === 0 ? (
-              <Card className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
+              <Card variant="translucent" className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
                 <p>还没有节点</p>
                 {!demo && (
                   <Button variant="glass" size="sm" onClick={enableDemo} className="mt-3 gap-1.5">

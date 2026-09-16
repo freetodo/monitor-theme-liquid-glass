@@ -7,24 +7,24 @@
 
 :root {
   --radius: 0.75rem;
-  --background: #111318;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.1);
-  --card-foreground: #ffffff;
-  --popover: rgba(20, 24, 34, 0.85);
-  --popover-foreground: #ffffff;
-  --primary: oklch(0.68 0.22 255);
+  --background: #f8f9fb;
+  --foreground: oklch(0.18 0.02 260);
+  --card: rgba(255, 255, 255, 0.35);
+  --card-foreground: oklch(0.18 0.02 260);
+  --popover: rgba(255, 255, 255, 0.85);
+  --popover-foreground: oklch(0.18 0.02 260);
+  --primary: oklch(0.56 0.22 255);
   --primary-foreground: #ffffff;
-  --secondary: rgba(255, 255, 255, 0.12);
-  --secondary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(255, 255, 255, 0.82);
-  --accent: rgba(255, 255, 255, 0.15);
-  --accent-foreground: #ffffff;
-  --destructive: oklch(0.65 0.22 25);
-  --border: rgba(255, 255, 255, 0.18);
-  --input: rgba(255, 255, 255, 0.14);
-  --ring: oklch(0.65 0.22 255 / 40%);
+  --secondary: rgba(255, 255, 255, 0.5);
+  --secondary-foreground: oklch(0.22 0.02 260);
+  --muted: rgba(255, 255, 255, 0.35);
+  --muted-foreground: oklch(0.48 0.02 260);
+  --accent: rgba(255, 255, 255, 0.6);
+  --accent-foreground: oklch(0.2 0.04 255);
+  --destructive: oklch(0.6 0.22 25);
+  --border: rgba(255, 255, 255, 0.5);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: oklch(0.56 0.22 255 / 35%);
   
   /* Apple Vibrant Palette */
   --chart-1: oklch(0.56 0.22 255); /* Apple Blue */
@@ -269,27 +269,63 @@
 .dark .liquid-card:hover {
   border-color: rgba(255, 255, 255, 0.2);
 }
-:root { --muted-foreground: rgba(255, 255, 255, 0.82); }
-.dark { --muted-foreground: rgba(255, 255, 255, 0.85); }
+:root { --muted-foreground: oklch(0.45 0.03 240); }
+.dark { --muted-foreground: oklch(0.75 0.018 240); }
 
-/* White typography for glass panels on translucent background */
-:root, .dark {
+/* Liquid Card Translucent variant for Summary and sub-panels (more transparent) */
+.liquid-card-translucent {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+}
+.dark .liquid-card-translucent {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+}
+.liquid-card-translucent:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+.dark .liquid-card-translucent:hover {
+  background: rgba(255, 255, 255, 0.045) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Dark mode typography & surface colors */
+.dark {
+  --background: #111318;
   --foreground: #ffffff;
   --card-foreground: #ffffff;
+  --muted-foreground: rgba(255, 255, 255, 0.85);
   --secondary-foreground: #ffffff;
   --accent-foreground: #ffffff;
-  --popover-foreground: #ffffff;
-}
-.dark {
   --popover: #172631;
+  --popover-foreground: #ffffff;
   --primary: #b3dcff;
   --border: rgb(255 255 255 / 20%);
 }
-body, .dark body {
-  background-color: #0d1117;
+
+/* Home page background: default bright/light, dark mode deep */
+body {
+  background-color: #f8f9fb;
   background-image:
-    radial-gradient(at 30% 10%, rgba(56, 189, 248, 0.05) 0px, transparent 60%),
-    radial-gradient(at 80% 80%, rgba(30, 58, 138, 0.05) 0px, transparent 60%);
+    radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(59, 130, 246, 0.04) 0px, transparent 60%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.dark body {
+  background-color: #111318;
+  background-image:
+    radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 15%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(37, 99, 235, 0.05) 0px, transparent 60%);
   background-attachment: fixed;
   background-size: cover;
 }
@@ -396,8 +432,8 @@ body {
   font-weight: 400;
   letter-spacing: .005em;
 }
-.liquid-card, .logout-glass, .monitor-nav, [data-slot="card"] {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.25);
+.dark .liquid-card, .dark .logout-glass, .dark .monitor-nav, .dark [data-slot="card"] {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 .liquid-card h3 { font-weight: 500; letter-spacing: -.025em; }
 main h2 { font-weight: 500; letter-spacing: -.025em; }
