@@ -21,7 +21,7 @@ function Tile({
       className="group gap-0 p-4.5 transition-all duration-300 ease-spring hover:translate-y-[-2px]"
     >
       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-        <div className="flex size-7 items-center justify-center rounded-xl border border-white/25 dark:border-white/10 bg-white/10 dark:bg-white/[0.03] text-foreground dark:text-white shadow-xs backdrop-blur-sm transition-transform duration-300 ease-spring group-hover:scale-110">
+        <div className="flex size-7 items-center justify-center rounded-xl border border-white/20 dark:border-white/10 bg-white/5 dark:bg-white/[0.02] text-foreground dark:text-white backdrop-blur-xs transition-transform duration-300 ease-spring group-hover:scale-110">
           <Icon className="size-3.5" />
         </div>
         <span>{label}</span>
