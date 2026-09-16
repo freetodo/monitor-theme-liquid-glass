@@ -10,7 +10,14 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { api, isDemoMode, setDemoMode, useNodes, type Node } from "@/lib/api"
 import { DEMO_ME } from "@/lib/mock"
 
-type Me = { authed: boolean; github: boolean; site_name: string; public_page: boolean }
+type Me = {
+  authed: boolean
+  can_provision?: boolean
+  github: boolean
+  public_page: boolean
+  site?: string
+  site_name: string
+}
 
 const loadDetail = () => import("@/components/NodeDetail").then((m) => ({ default: m.NodeDetail }))
 const NodeDetail = lazy(loadDetail)
@@ -104,7 +111,7 @@ export default function App() {
   const selected = sorted.find((n) => n.id === open)
 
   useEffect(() => {
-    document.title = [selected?.name, "Monitor"].filter(Boolean).join(" · ")
+    document.title = [selected?.name, me?.site_name || "Monitor"].filter(Boolean).join(" · ")
   }, [selected?.name, me?.site_name])
 
   const enableDemo = () => {
@@ -170,7 +177,7 @@ export default function App() {
             className="group flex items-center text-base font-semibold tracking-tight transition-opacity hover:opacity-80 cursor-pointer"
             onClick={() => go(null)}
           >
-            <span className="text-foreground font-semibold">{"Monitor"}</span>
+            <span className="text-foreground font-semibold">{me?.site_name || "Monitor"}</span>
           </button>
 
           {demo && (
