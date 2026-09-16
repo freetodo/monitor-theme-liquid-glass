@@ -242,7 +242,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            <Summary nodes={sorted} onSelectNode={go} />
+            <Summary nodes={sorted} />
             {sorted.length === 0 ? (
               <Card variant="translucent" className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
                 <p>还没有节点</p>
