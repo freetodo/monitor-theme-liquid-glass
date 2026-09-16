@@ -8,12 +8,10 @@ import { cn } from "@/lib/utils"
 function Tile({
   icon: Icon,
   label,
-  colorClass,
   children,
 }: {
   icon: typeof Server
   label: string
-  colorClass: { bg: string; text: string }
   children: React.ReactNode
 }) {
   return (
@@ -22,13 +20,7 @@ function Tile({
       className="group gap-0 p-4.5 transition-all duration-300 ease-spring backdrop-blur-2xl hover:translate-y-[-2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.25)]"
     >
       <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-        <div
-          className={cn(
-            "flex size-7 items-center justify-center rounded-xl border border-white/60 dark:border-white/10 shadow-[0_2px_6px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.7)] backdrop-blur-md transition-transform duration-300 ease-spring group-hover:scale-110",
-            colorClass.bg,
-            colorClass.text
-          )}
-        >
+        <div className="flex size-7 items-center justify-center rounded-xl border border-white/60 dark:border-white/15 bg-white/15 dark:bg-white/10 text-white shadow-[0_2px_6px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.7)] backdrop-blur-md transition-transform duration-300 ease-spring group-hover:scale-110">
           <Icon className="size-3.5" />
         </div>
         <span>{label}</span>
@@ -45,11 +37,11 @@ function Flow({ down, up, className }: { down: string; up: string; className?: s
   return (
     <div className={cn("tnum grid grid-cols-1 gap-x-2 sm:grid-cols-2", className)}>
       <span className="inline-flex items-center gap-1">
-        <ArrowDown className="size-3 shrink-0 text-blue-400" />
+        <ArrowDown className="size-3 shrink-0 text-sky-400" />
         {down}
       </span>
       <span className="inline-flex items-center gap-1">
-        <ArrowUp className="size-3 shrink-0 text-purple-400" />
+        <ArrowUp className="size-3 shrink-0 text-white/70" />
         {up}
       </span>
     </div>
@@ -67,12 +59,12 @@ function Spark({ series }: { series: { values: number[]; stroke: string; gradien
     <svg viewBox="0 0 100 24" preserveAspectRatio="none" className="h-7 w-full overflow-visible" aria-hidden>
       <defs>
         <linearGradient id="spark-rx" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#007aff" stopOpacity="0.32" />
-          <stop offset="100%" stopColor="#007aff" stopOpacity="0.0" />
+          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.0" />
         </linearGradient>
         <linearGradient id="spark-tx" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#af52de" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#af52de" stopOpacity="0.0" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
         </linearGradient>
       </defs>
 
@@ -112,14 +104,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
 
   return (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-      <Tile
-        icon={Server}
-        label="节点数量"
-        colorClass={{
-          bg: "bg-blue-500/15 dark:bg-blue-500/25",
-          text: "text-blue-400",
-        }}
-      >
+      <Tile icon={Server} label="节点数量">
         <div className="tnum mt-2 text-2xl font-semibold tracking-tight">
           {online.length} <span className="text-sm font-normal text-muted-foreground">/ {nodes.length}</span>
         </div>
@@ -132,14 +117,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         </div>
       </Tile>
 
-      <Tile
-        icon={Activity}
-        label="最忙节点"
-        colorClass={{
-          bg: "bg-amber-500/15 dark:bg-amber-500/25",
-          text: "text-amber-400",
-        }}
-      >
+      <Tile icon={Activity} label="最忙节点">
         <div className="tnum mt-2 text-2xl font-semibold tracking-tight">
           {busiest ? `${cpu.toFixed(1)}%` : "—"}
         </div>
@@ -153,14 +131,7 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         </div>
       </Tile>
 
-      <Tile
-        icon={ArrowDownUp}
-        label="今日流量"
-        colorClass={{
-          bg: "bg-purple-500/15 dark:bg-purple-500/25",
-          text: "text-purple-400",
-        }}
-      >
+      <Tile icon={ArrowDownUp} label="今日流量">
         <Flow
           down={bytes(sum((n) => n.day_rx))}
           up={bytes(sum((n) => n.day_tx))}
@@ -170,27 +141,20 @@ export function Summary({ nodes }: { nodes: Node[] }) {
         <Flow down={bytes(sum((n) => n.total_rx))} up={bytes(sum((n) => n.total_tx))} className="mt-0.5 text-xs" />
       </Tile>
 
-      <Tile
-        icon={Gauge}
-        label="实时网速"
-        colorClass={{
-          bg: "bg-emerald-500/15 dark:bg-emerald-500/25",
-          text: "text-emerald-400",
-        }}
-      >
+      <Tile icon={Gauge} label="实时网速">
         <Flow down={rate(now.rx)} up={rate(now.tx)} className="mt-2 text-sm font-semibold" />
         <div className="mt-auto pt-1">
           <Spark
             series={[
               {
                 values: speedHistory.map((s) => s.rx),
-                stroke: "text-blue-400",
+                stroke: "text-sky-400",
                 gradientId: "spark-rx",
                 fill: "url(#spark-rx)",
               },
               {
                 values: speedHistory.map((s) => s.tx),
-                stroke: "text-purple-400",
+                stroke: "text-white/60",
                 gradientId: "spark-tx",
                 fill: "url(#spark-tx)",
               },

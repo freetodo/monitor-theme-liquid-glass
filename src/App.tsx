@@ -175,9 +175,9 @@ export default function App() {
             <button
               onClick={exitDemo}
               title="点击退出演示模式"
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-amber-500/15 border border-amber-500/30 text-amber-300 hover:bg-amber-500/25 transition-all active:scale-[0.96] cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border border-white/25 bg-white/10 text-white/90 hover:bg-white/20 transition-all active:scale-[0.96] cursor-pointer shadow-xs backdrop-blur-md"
             >
-              <Sparkles className="size-3 text-amber-400" />
+              <Sparkles className="size-3 text-sky-400" />
               演示模式 · 点击退出
             </button>
           )}

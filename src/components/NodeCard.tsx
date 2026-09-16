@@ -154,19 +154,19 @@ export function NodeCard({ node, onOpen }: { node: Node; onOpen: () => void }) {
 
           <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-black/[0.05] dark:border-white/[0.08] pt-3.5 text-xs">
             <span className="tnum inline-flex items-center gap-1.5 text-foreground">
-              <ArrowDown className="size-3 text-blue-400" />
+              <ArrowDown className="size-3 text-sky-400" />
               {m ? rate(m.net_rx) : "—"}
             </span>
             <span className="tnum inline-flex items-center gap-1.5 text-foreground">
-              <ArrowUp className="size-3 text-purple-400" />
+              <ArrowUp className="size-3 text-white/70" />
               {m ? rate(m.net_tx) : "—"}
             </span>
             <span className="tnum inline-flex items-center gap-1.5 text-muted-foreground">
-              <ArrowDown className="size-3 text-muted-foreground/80" />
+              <ArrowDown className="size-3 text-muted-foreground/60" />
               {bytes(node.total_rx)}
             </span>
             <span className="tnum inline-flex items-center gap-1.5 text-muted-foreground">
-              <ArrowUp className="size-3 text-muted-foreground/80" />
+              <ArrowUp className="size-3 text-muted-foreground/60" />
               {bytes(node.total_tx)}
             </span>
           </div>

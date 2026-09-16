@@ -9,27 +9,11 @@ type Props = {
   type?: "cpu" | "mem" | "disk" | "traffic"
 }
 
-function getGradient(type?: Props["type"], pct?: number | null) {
-  if (pct === null || pct === undefined) return "bg-foreground"
-
-  if (type === "cpu" || !type) {
-    if (pct >= 85) return "bg-gradient-to-r from-red-500 to-rose-600 shadow-[0_0_8px_rgba(239,68,68,0.4)]"
-    if (pct >= 70) return "bg-gradient-to-r from-amber-400 to-orange-500 shadow-[0_0_8px_rgba(245,158,11,0.3)]"
-    return "bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400"
-  }
-
-  switch (type) {
-    case "mem":
-      return pct >= 85
-        ? "bg-gradient-to-r from-amber-500 to-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]"
-        : "bg-gradient-to-r from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400"
-    case "disk":
-      return pct >= 90
-        ? "bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]"
-        : "bg-gradient-to-r from-teal-500 to-cyan-500 dark:from-teal-400 dark:to-cyan-400"
-    case "traffic":
-      return "bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-400 dark:to-teal-400"
-  }
+function getGradient(_type?: Props["type"], pct?: number | null) {
+  if (pct === null || pct === undefined) return "bg-white/40"
+  if (pct >= 90) return "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.35)]"
+  if (pct >= 80) return "bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.3)]"
+  return "bg-gradient-to-r from-blue-500 to-sky-400"
 }
 
 /**

@@ -50,15 +50,15 @@ const SERIES = { dot: false as const, strokeWidth: 2, isAnimationActive: false }
 
 const Y_WIDTH = 68
 
-// Apple Vibrant palette for multi-probe latency comparison
+// Cohesive modern palette for multi-probe latency comparison
 const PALETTE = [
-  { stroke: "#007aff", dash: undefined }, // Apple Blue
-  { stroke: "#af52de", dash: undefined }, // Apple Purple
-  { stroke: "#00c7be", dash: undefined }, // Apple Teal
-  { stroke: "#ff9500", dash: undefined }, // Apple Orange
-  { stroke: "#ff2d55", dash: undefined }, // Apple Coral
-  { stroke: "#34c759", dash: undefined }, // Apple Green
-  { stroke: "#5856d6", dash: undefined }, // Apple Indigo
+  { stroke: "#38bdf8", dash: undefined }, // Sky Blue
+  { stroke: "#818cf8", dash: undefined }, // Soft Indigo
+  { stroke: "#34d399", dash: undefined }, // Mint
+  { stroke: "#fbbf24", dash: undefined }, // Amber
+  { stroke: "#f87171", dash: undefined }, // Coral
+  { stroke: "#a78bfa", dash: undefined }, // Lavender
+  { stroke: "#67e8f9", dash: undefined }, // Cyan
 ]
 
 const TABS = [
@@ -446,8 +446,8 @@ export function NodeDetail({ node }: { node: Node }) {
               <AreaChart data={metricRows}>
                 <defs>
                   <linearGradient id="cpu-glow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#007aff" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="#007aff" stopOpacity={0.0} />
+                    <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.25} />
+                    <stop offset="100%" stopColor="#38bdf8" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(120, 120, 130, 0.15)" vertical={false} />
@@ -458,7 +458,7 @@ export function NodeDetail({ node }: { node: Node }) {
                   formatter={(v) => [`${Number(v).toFixed(1)}%`, "CPU"]}
                   contentStyle={tooltipStyle}
                 />
-                <Area dataKey="cpu" stroke="#007aff" fill="url(#cpu-glow)" {...SERIES} />
+                <Area dataKey="cpu" stroke="#38bdf8" fill="url(#cpu-glow)" {...SERIES} />
               </AreaChart>
             </ResponsiveContainer>
           </Panel>
@@ -468,8 +468,8 @@ export function NodeDetail({ node }: { node: Node }) {
               <AreaChart data={metricRows}>
                 <defs>
                   <linearGradient id="mem-glow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#af52de" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="#af52de" stopOpacity={0.0} />
+                    <stop offset="0%" stopColor="#818cf8" stopOpacity={0.22} />
+                    <stop offset="100%" stopColor="#818cf8" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(120, 120, 130, 0.15)" vertical={false} />
@@ -480,7 +480,7 @@ export function NodeDetail({ node }: { node: Node }) {
                   formatter={(v) => bytes(Number(v))}
                   contentStyle={tooltipStyle}
                 />
-                <Area dataKey="mem_used" name="内存" stroke="#af52de" fill="url(#mem-glow)" {...SERIES} />
+                <Area dataKey="mem_used" name="内存" stroke="#818cf8" fill="url(#mem-glow)" {...SERIES} />
               </AreaChart>
             </ResponsiveContainer>
           </Panel>
@@ -496,8 +496,8 @@ export function NodeDetail({ node }: { node: Node }) {
                   formatter={(v) => rate(Number(v))}
                   contentStyle={tooltipStyle}
                 />
-                <Line dataKey="net_rx" name="下行" stroke="#007aff" {...SERIES} />
-                <Line dataKey="net_tx" name="上行" stroke="#af52de" {...SERIES} />
+                <Line dataKey="net_rx" name="下行" stroke="#38bdf8" {...SERIES} />
+                <Line dataKey="net_tx" name="上行" stroke="rgba(255, 255, 255, 0.65)" {...SERIES} />
               </LineChart>
             </ResponsiveContainer>
           </Panel>
@@ -507,8 +507,8 @@ export function NodeDetail({ node }: { node: Node }) {
               <AreaChart data={metricRows}>
                 <defs>
                   <linearGradient id="disk-glow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#00c7be" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="#00c7be" stopOpacity={0.0} />
+                    <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.2} />
+                    <stop offset="100%" stopColor="#38bdf8" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(120, 120, 130, 0.15)" vertical={false} />
@@ -519,7 +519,7 @@ export function NodeDetail({ node }: { node: Node }) {
                   formatter={(v) => bytes(Number(v))}
                   contentStyle={tooltipStyle}
                 />
-                <Area dataKey="disk_used" name="硬盘" stroke="#00c7be" fill="url(#disk-glow)" {...SERIES} />
+                <Area dataKey="disk_used" name="硬盘" stroke="#38bdf8" fill="url(#disk-glow)" {...SERIES} />
               </AreaChart>
             </ResponsiveContainer>
           </Panel>
