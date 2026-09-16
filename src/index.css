@@ -331,19 +331,19 @@ body {
 }
 
 .monitor-nav {
-  backdrop-filter: blur(28px) saturate(190%) brightness(1.08);
-  -webkit-backdrop-filter: blur(28px) saturate(190%) brightness(1.08);
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   color: inherit;
 }
 .dark .monitor-nav {
-  background: rgba(20, 24, 33, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(28px) saturate(190%) brightness(1);
-  -webkit-backdrop-filter: blur(28px) saturate(190%) brightness(1);
+  background: rgba(20, 24, 33, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
   color: #fff;
 }
 
