@@ -1,7 +1,7 @@
 import { Activity, ArrowDown, ArrowDownUp, ArrowUp, Gauge, Server } from "lucide-react"
 
 import { Card } from "@/components/ui/card"
-import { speedHistory, type Node } from "@/lib/api"
+import type { Node, SpeedPoint } from "@/lib/api"
 import { bytes, rate } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
@@ -92,7 +92,7 @@ function Spark({ series }: { series: { values: number[]; stroke: string; gradien
   )
 }
 
-export function Summary({ nodes }: { nodes: Node[] }) {
+export function Summary({ nodes, speedHistory }: { nodes: Node[]; speedHistory: SpeedPoint[] }) {
   const online = nodes.filter((n) => n.online)
   const sum = (pick: (n: Node) => number) => nodes.reduce((total, n) => total + pick(n), 0)
 

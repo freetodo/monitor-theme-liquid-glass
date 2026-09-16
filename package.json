@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/freetodo/monitor-theme-liquid-glass#readme",
   "private": true,
-  "version": "1.0.7",
+  "version": "1.0.8",
   "type": "module",
   "scripts": {
     "dev": "vite",

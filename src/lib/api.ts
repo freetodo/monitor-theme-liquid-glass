@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DEMO_ME, DEMO_NODES, DEMO_SPEED_POINTS, generateMockHistory } from "./mock"
+import { DEMO_ME, DEMO_NODES, DEMO_SPEED_POINTS, generateMockHistory } from "./mock.ts"
 
 export type Metrics = {
   uptime: number
@@ -132,15 +132,14 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
  * the hub's push interval.
  */
 const KEEP = 60
-export const speedHistory: { rx: number; tx: number }[] = [...DEMO_SPEED_POINTS]
+export type SpeedPoint = { rx: number; tx: number }
 
-function sample(nodes: Node[]) {
+export function sampleSpeed(history: SpeedPoint[], nodes: Node[]): SpeedPoint[] {
   const live = nodes.filter((n) => n.online && n.metrics)
-  speedHistory.push({
+  return [...history.slice(-(KEEP - 1)), {
     rx: live.reduce((s, n) => s + n.metrics!.net_rx, 0),
     tx: live.reduce((s, n) => s + n.metrics!.net_tx, 0),
-  })
-  if (speedHistory.length > KEEP) speedHistory.shift()
+  }]
 }
 
 /** A malformed report must not remove every other node from the page. */
@@ -159,8 +158,11 @@ export function safeNodes(nodes: Node[]): Node[] {
  * Live node list. Uses the WebSocket the hub pushes every two seconds, falling
  * back to polling if it cannot be established.
  */
-export function useNodes() {
-  const [nodes, setNodes] = useState<Node[] | null>(null)
+export function useNodes(demo = isDemoMode) {
+  const [{ nodes, speedHistory }, setSnapshot] = useState<{
+    nodes: Node[] | null
+    speedHistory: SpeedPoint[]
+  }>({ nodes: null, speedHistory: [] })
   const [error, setError] = useState<string | null>(null)
   // Set when the hub answers 401: the status page has been closed to anonymous
   // callers since this tab loaded. The hub also ends the stream, so this surfaces
@@ -173,16 +175,18 @@ export function useNodes() {
     let poll: ReturnType<typeof setInterval> | null = null
     let retry: ReturnType<typeof setTimeout> | null = null
     let closed = false
+    let history: SpeedPoint[] = demo ? [...DEMO_SPEED_POINTS] : []
 
     const receive = (list: Node[]) => {
+      if (closed) return
       const safe = safeNodes(list)
-      sample(safe)
-      setNodes(safe)
+      history = sampleSpeed(history, safe)
+      setSnapshot({ nodes: safe, speedHistory: history })
       setError(null)
       setClosed(false)
     }
 
-    if (isDemoMode) {
+    if (demo) {
       let currentNodes = [...DEMO_NODES]
       receive(currentNodes)
       const mockTimer = setInterval(() => {
@@ -204,13 +208,17 @@ export function useNodes() {
         })
         receive(currentNodes)
       }, 2000)
-      return () => clearInterval(mockTimer)
+      return () => {
+        closed = true
+        clearInterval(mockTimer)
+      }
     }
 
     const fetchOnce = () =>
       api<{ nodes: Node[] }>("/nodes")
         .then((d) => receive(d.nodes))
         .catch((e: Error) => {
+          if (closed) return
           if (isDemoMode) {
             receive(DEMO_NODES)
             return
@@ -265,7 +273,7 @@ export function useNodes() {
       if (poll) clearInterval(poll)
       if (retry) clearTimeout(retry)
     }
-  }, [])
+  }, [demo])
 
-  return { nodes, error, closed }
+  return { nodes, speedHistory, error, closed }
 }

@@ -70,7 +70,7 @@ export default function App() {
   const [me, setMe] = useState<Me | null>(null)
   const [meError, setMeError] = useState("")
   const [demo, setDemo] = useState(isDemoMode)
-  const { nodes, error, closed } = useNodes()
+  const { nodes, speedHistory, error, closed } = useNodes(demo)
   const [open, go] = useNodeRoute()
 
   const loadMe = useCallback(() => {
@@ -249,7 +249,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            <Summary nodes={sorted} />
+            <Summary nodes={sorted} speedHistory={speedHistory} />
             {sorted.length === 0 ? (
               <Card variant="translucent" className="items-center justify-center py-16 text-center text-sm text-muted-foreground">
                 <p>还没有节点</p>
