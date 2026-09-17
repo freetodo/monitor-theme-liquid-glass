@@ -297,11 +297,11 @@
 /* 只针对概览区域网格容器的 card 提高字体可视度 */
 .summary-cards .summary-card {
   color: var(--foreground);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 1px rgba(255, 255, 255, 0.85);
+  /* text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 1px rgba(255, 255, 255, 0.85); */
 }
 .dark .summary-cards .summary-card {
   color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6);
+  /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6); */
 }
 
 .summary-cards .summary-card .text-2xl {
@@ -491,13 +491,7 @@ body {
   font-weight: 400;
   letter-spacing: .005em;
 }
-/* 亮色模式微浮雕反光：深色字下叠加 1px 细微高光，遇到深色背景杂斑也边缘分明 */
-.liquid-card, .logout-glass, .monitor-nav, [data-slot="card"], main h1, main h2, main h3 {
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85), 0 0 1px rgba(255, 255, 255, 0.4);
-}
-.dark .liquid-card, .dark .logout-glass, .dark .monitor-nav, .dark [data-slot="card"], .dark main h1, .dark main h2, .dark main h3 {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-}
+
 .liquid-card h3 { font-weight: 500; letter-spacing: -.025em; }
 main h2 { font-weight: 500; letter-spacing: -.025em; }
 .liquid-card .font-semibold { font-weight: 500; }

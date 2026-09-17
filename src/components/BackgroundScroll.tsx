@@ -6,8 +6,8 @@ export function BackgroundScroll() {
     return p ? Number(p) : Math.floor(Math.random() * 10000)
   })
 
-  const leftSrc = `https://picsum.photos/1600/2200?random=${randomSeed}_1`
-  const rightSrc = `https://picsum.photos/1600/2200?random=${randomSeed}_2`
+  const leftSrc = `https://picsum.photos/800/1100?random=${randomSeed}_1`
+  const rightSrc = `https://picsum.photos/800/1100?random=${randomSeed}_2`
 
   return (
     <div
@@ -23,7 +23,7 @@ export function BackgroundScroll() {
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-85 dark:opacity-40"
+            className="h-full w-full object-cover dark:opacity-40"
           />
           {/* 边缘融合与底部渐隐 */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-background/25 dark:to-background/50" />
@@ -37,7 +37,7 @@ export function BackgroundScroll() {
             alt=""
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover opacity-85 dark:opacity-40"
+            className="h-full w-full object-cover dark:opacity-40"
           />
           {/* 边缘融合与底部渐隐 */}
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/25 dark:to-background/50" />
